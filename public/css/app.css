@@ -1,0 +1,15 @@
+.auth-links {
+    margin-top: 10px;
+}
+
+.content-wrapper {
+    background-image: url("../images/fundo_sistema.png");
+    background-position: center;
+    background-repeat: repeat-y;
+}
+
+.login-box {
+    background-image: url("../images/fundo_sistema.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
