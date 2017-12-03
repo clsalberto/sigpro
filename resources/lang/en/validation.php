@@ -117,6 +117,7 @@ return [
     */
 
     'attributes' => [
+        'avatar'                      => 'avatar',
         'first_name'                  => 'first nome',
         'last_name'                   => 'last name',
         'email'                       => 'email',

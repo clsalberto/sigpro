@@ -37,6 +37,7 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         $user->name = $data['name'];
+        $user->avatar = $this->avatar($data['avatar'], 128);
         $user->save();
 
         $user->profile()->update([

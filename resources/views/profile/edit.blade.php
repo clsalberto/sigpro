@@ -51,7 +51,7 @@
                     <h3 class="box-title">Dados</h3>
                 </div>
 
-                <form method="POST" action="{{ route('profile.update') }}">
+                <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                     {!! csrf_field() !!}
 
                     <!-- /.box-header -->
@@ -68,11 +68,21 @@
                         </div>
 
                         <div class="form-group {{ $errors->has('surname') ? 'has-error' : '' }}">
-                            <label for="name">{{ trans('template.fields.surname') }}</label>
+                            <label for="surname">{{ trans('template.fields.surname') }}</label>
                             <input type="text" name="surname" class="form-control" value="{{ $user->profile->surname }}" placeholder="{{ trans('template.fields.surname') }}">
                             @if ($errors->has('surname'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('surname') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}">
+                            <label for="avatar">{{ trans('template.fields.avatar') }}</label>
+                            <input type="file" name="avatar" accept="image/*">
+                            @if ($errors->has('avatar'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('avatar') }}</strong>
                                 </span>
                             @endif
                         </div>

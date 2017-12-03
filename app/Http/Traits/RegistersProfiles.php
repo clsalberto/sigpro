@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RedirectsUsers;
+use App\Http\Traits\RegistersImages;
 
 trait RegistersProfiles
 {
-    use RedirectsUsers;
+    use RedirectsUsers, RegistersImages;
 
     /**
      * Show the user profile.
@@ -54,6 +55,7 @@ trait RegistersProfiles
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif',
             'surname' => 'required|string|max:255',
             'gender' => 'required|string|max:1',
             'address' => 'required|string|max:255',
@@ -69,8 +71,12 @@ trait RegistersProfiles
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
+
         event(new Registered($user = $this->update($request->all(), $this->getUser()->id)));
-        return $this->registered($request, $user) ?: redirect($this->redirectPath())->with('success', 'Dados atualizados com sucesso!');
+
+        return $this->registered($request, $user) ?:
+            redirect($this->redirectPath())
+                ->with('success', 'Dados atualizados com sucesso!');
     }
 
     /**

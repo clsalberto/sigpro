@@ -3,6 +3,7 @@
 return [
 
     'fields' => [
+        'avatar'                      => 'Avatar',
         'first_name'                  => 'First nome',
         'last_name'                   => 'Last name',
         'email'                       => 'Email',

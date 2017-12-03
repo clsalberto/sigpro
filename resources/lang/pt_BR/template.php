@@ -7,6 +7,7 @@ return [
     ],
 
     'fields' => [
+        'avatar'                      => 'Avatar',
         'name'                        => 'Nome',
         'surname'                     => 'Sobrenome',
         'email'                       => 'E-mail',
