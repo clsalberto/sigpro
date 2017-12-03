@@ -21,9 +21,8 @@
 
 		<!-- /.box-header -->
 		<div class="box-header">
-			<p>{{ $room->city->name }}</p>
 			<h3 class="box-title">{{ $room->course->name }} <br><small>{{ $room->module->description }}</small></h3>
-			<h3 class="box-title pull-right">{{ format_date($class_date->class_date) }}</h3>
+			<div class="box-comment pull-right">{!! format_date($class_date->class_date) !!}</div>
 		</div>
 		<!-- /.box-header -->
 

@@ -15,7 +15,7 @@
 			<div class="col-xs-12">
 				<h2 class="page-header">
 					{!! config('template.logo') !!} - Comprovante mapa de notas
-					<small class="pull-right"><b>{{ $room->city->name }}</b> - <b>{{ format_date($class_date->class_date) }}</b></small>
+					<small class="pull-right">{{ $room->city->name }} - {!! format_date($class_date->class_date) !!}</small>
 				</h2>
 			</div>
 			<!-- /.col -->

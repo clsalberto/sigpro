@@ -15,7 +15,7 @@
 	        <div class="col-xs-12">
 	          <h2 class="page-header">
 	            {!! config('template.logo') !!} - Comprovante de Frequência
-	            <small class="pull-right"><b>{{ $room->city->name }}</b> - <b>{{ format_date($class_date->class_date) }}</b></small>
+	            <small class="pull-right"><b>{{ $room->city->name }}</b> - <b>{!! format_date($class_date->class_date) !!}</b></small>
 	          </h2>
 	        </div>
 	        <!-- /.col -->

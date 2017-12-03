@@ -19,8 +19,8 @@
 
         <!-- /.box-header -->
         <div class="box-header">
-            <p>{{ $room->city->name }}</p>
-            <h3 class="box-title">{{ $room->course->name }} <br><small>{{ $room->module->description }}</small></h3>
+            <h3 class="box-title">{{ $room->course->name }} <br>
+            <small>{{ $room->module->description }}</small></h3>
         </div>
         <!-- /.box-header -->
 
@@ -39,7 +39,7 @@
                 @foreach ($dates as $date)
                     <tr>
                         <td>{{ $date->id }}</td>
-                        <td>{{ format_date($date->class_date) }}</td>
+                        <td>{!! format_date($date->class_date) !!}</td>
                         <td>{!! $date->avaliation ? '<small class="label label-success">Sim</small>' : '<small class="label label-default">Não</small>' !!}</td>
                         <td>
                             <div class="btn-group">

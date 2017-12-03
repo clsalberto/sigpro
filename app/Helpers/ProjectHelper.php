@@ -76,14 +76,14 @@ if (!function_exists("format_date")) {
 
         switch ($sem) {
             case 0: $sem = "Domingo"; break;
-            case 1: $sem = "Segunda"; break;
-            case 2: $sem = "Terça"; break;
-            case 3: $sem = "Quarta"; break;
-            case 4: $sem = "Quinta"; break;
-            case 5: $sem = "Sexta"; break;
+            case 1: $sem = "Segunda-feira"; break;
+            case 2: $sem = "Terça-feira"; break;
+            case 3: $sem = "Quarta-feira"; break;
+            case 4: $sem = "Quinta-feira"; break;
+            case 5: $sem = "Sexta-feira"; break;
             case 6: $sem = "Sábado"; break;
         }
 
-        return "{$sem}  -  {$dia} / {$mes} / {$ano}";
+        return "{$sem}<br><b>{$dia}</b> <i class='fa fa-angle-double-right'></i> {$mes} {$ano}";
     }
 }
