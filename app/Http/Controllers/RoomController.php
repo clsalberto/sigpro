@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
 use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
@@ -25,6 +24,8 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Auth::user()->rooms;
+        $rooms = collect($rooms->groupBy('course.name'));
+
         return view('rooms.index', compact('rooms'));
     }
 }
