@@ -7,13 +7,13 @@ use Intervention\Image\Facades\Image;
 
 trait RegistersImages
 {
-    public function avatar($image, $size)
+    public function avatar($image, $id, $size)
     {
         if (!is_null($image))
         {
             $file = $image;
             $extension = $image->getClientOriginalExtension();
-            $file_name = date('YmdHis') . random_int(1000, 9999) . '.' . $extension;
+            $file_name = md5($id) . '.' . $extension;
             $destination_path = public_path('images/avatars/');
 
             $full_path = $destination_path . $file_name;

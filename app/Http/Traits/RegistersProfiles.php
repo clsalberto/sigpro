@@ -55,7 +55,7 @@ trait RegistersProfiles
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg',
             'surname' => 'required|string|max:255',
             'gender' => 'required|string|max:1',
             'address' => 'required|string|max:255',
