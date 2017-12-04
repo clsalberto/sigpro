@@ -23,13 +23,6 @@ class Room extends Model
     ];
 
     /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * Get of the course.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

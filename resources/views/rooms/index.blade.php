@@ -16,21 +16,31 @@
 
     <ul class="timeline">
         @if(count($rooms) > 0)
-            @foreach ($rooms as $room_name => $rooms_details)
+            @foreach ($rooms as $city_name => $rooms_details)
 
                 <li class="time-label">
                   <span class="bg-green-active">
-                    <i class="fa fa-book margin-r-5"></i> {{ $room_name }}
+                    <i class="fa fa-map-o margin-r-5"></i> {{ $city_name }}
                   </span>
                 </li>
 
+                @php $course = '' @endphp
+
                 @foreach($rooms_details as $room)
 
+                    @if($course <> $room->course->name)
+
+                    <li class="time-label">
+                      <span class="bg-gray">
+                        <i class="fa fa-book margin-r-5"></i> {{ $room->course->name }}
+                      </span>
+                    </li>
+
+                    @endif
                     <!-- timeline item -->
                     <li>
                         <i class="fa fa-arrow-right bg-gray"></i>
                         <div class="timeline-item">
-                            <span class="time"><i class="fa fa-map-o"></i> {{ $room->city->name }}</span>
                             <span class="time"><i class="fa fa-angle-double-right"></i> {{ $room->pact_id . '/' . $room->pact->year }}</span>
                             <h3 class="timeline-header">{{ $room->id . ' - ' . $room->module->description }}</h3>
                             <div class="timeline-body">
@@ -42,6 +52,9 @@
                         </div>
                     </li>
                     <!-- END timeline item -->
+
+                    @php $course = $room->course->name @endphp
+
 
                 @endforeach
             @endforeach
