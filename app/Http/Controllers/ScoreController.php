@@ -28,12 +28,7 @@ class ScoreController extends Controller
     {
         $room = Room::find($id);
 
-        $first_day = date('Y-m-01');
-        $last_day = date('Y-m-t');
-
         $dates = $room->classDates()
-            //->where('class_date', '>=', $first_day)
-            //->where('class_date', '<=', $last_day)
             ->where('avaliation', true)
             ->orderBy('class_date')->get();
 

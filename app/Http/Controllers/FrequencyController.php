@@ -26,12 +26,7 @@ class FrequencyController extends Controller
     {
         $room = Room::findOrFail($id);
 
-        $first_day = date('Y-m-01');
-        $last_day = date('Y-m-t');
-
         $dates = $room->classDates()
-            ->where('class_date', '>=', $first_day)
-            ->where('class_date', '<=', $last_day)
             ->orderBy('class_date')->get();
 
         return view('frequencies.index', compact(['room', 'dates']));
