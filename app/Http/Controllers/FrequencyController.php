@@ -24,7 +24,7 @@ class FrequencyController extends Controller
      */
     public function index($id)
     {
-        $room = Room::findOrFail($id);
+        $room = Room::find($id);
 
         $dates = $room->classDates()
             ->orderBy('class_date')->get();
@@ -41,8 +41,9 @@ class FrequencyController extends Controller
      */
     public function show($room_id, $class_date_id)
     {
-        $room = Room::findOrFail($room_id);
-        $registrations = $room->registrations()->orderBy('student_id')->get();
+        $room = Room::find($room_id);
+        $registrations = collect($room->registrations()->with('student')->get())->sortBy('student.name');
+        $registrations->values()->all();
         $class_date = $room->classDates()->find($class_date_id);
 
         return view('frequencies.show', compact(['room', 'registrations', 'class_date']));
@@ -57,8 +58,9 @@ class FrequencyController extends Controller
      */
     public function print($room_id, $class_date_id)
     {
-        $room = Room::findOrFail($room_id);
-        $registrations = $room->registrations()->orderBy('student_id')->get();
+        $room = Room::find($room_id);
+        $registrations = collect($room->registrations()->with('student')->get())->sortBy('student.name');
+        $registrations->values()->all();
         $class_date = $room->classDates()->find($class_date_id);
 
         return view('frequencies.print', compact(['room', 'registrations', 'class_date']));

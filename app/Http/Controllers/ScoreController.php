@@ -45,7 +45,8 @@ class ScoreController extends Controller
     public function show($room_id, $class_date_id)
     {
         $room = Room::findOrFail($room_id);
-        $registrations = $room->registrations()->orderBy('student_id')->get();
+        $registrations = collect($room->registrations()->with('student')->get())->sortBy('student.name');
+        $registrations->values()->all();
         $class_date = $room->classDates()->find($class_date_id);
 
         return view('scores.show', compact(['room', 'registrations', 'class_date']));
@@ -61,7 +62,8 @@ class ScoreController extends Controller
     public function print($room_id, $class_date_id)
     {
         $room = Room::findOrFail($room_id);
-        $registrations = $room->registrations()->orderBy('student_id')->get();
+        $registrations = collect($room->registrations()->with('student')->get())->sortBy('student.name');
+        $registrations->values()->all();
         $class_date = $room->classDates()->find($class_date_id);
 
         return view('scores.print', compact(['room', 'registrations', 'class_date']));

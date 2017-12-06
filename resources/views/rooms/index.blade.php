@@ -36,7 +36,7 @@
                             <i class="fa fa-arrow-right bg-gray"></i>
                             <div class="timeline-item">
                                 <span class="time"><i class="fa fa-angle-double-right"></i> {{ $room->pact_id . '/' . $room->pact->year }}</span>
-                                <h3 class="timeline-header">{{ $room->course->name }}</h3>
+                                <h3 class="timeline-header"><i class="fa fa-mortar-board margin-r-5"></i> {{ $room->course->name }}</h3>
                                 <div class="timeline-body">
 
                                     @endif
