@@ -62,4 +62,3 @@ Route::get('/room/{id}/scores', 'ScoreController@index')->name('scores');
 Route::get('/room/{room_id}/{class_date_id}/scores', 'ScoreController@show')->name('scores.students');
 Route::post('/room/{room_id}/{class_date_id}/scores', 'ScoreController@update')->name('scores.students.update');
 Route::get('/room/{room_id}/{class_date_id}/scores/print', 'ScoreController@print')->name('scores.students.print');
-

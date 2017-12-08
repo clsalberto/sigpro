@@ -16,15 +16,15 @@ class DatabaseSeeder extends Seeder
         $this->call(ModalityTableSeeder::class);
         $this->call(ModalityUserTableSeeder::class);
         $this->call(PactTableSeeder::class);
-        $this->call(CourseTableSeeder::class);
-        $this->call(ModuleTableSeeder::class);
-        $this->call(CityTableSeeder::class);
-        $this->call(RoomTableSeeder::class);
-        $this->call(RoomUserTableSeeder::class);
-        $this->call(StudentTableSeeder::class);
-        $this->call(RegistrationTableSeeder::class);
-        $this->call(ClassDateTableSeeder::class);
-        $this->call(FrequencyTableSeeder::class);
-        $this->call(ScoreTableSeeder::class);
+        //$this->call(CourseTableSeeder::class);
+        //$this->call(ModuleTableSeeder::class);
+        //$this->call(CityTableSeeder::class);
+        //$this->call(RoomTableSeeder::class);
+        //$this->call(RoomUserTableSeeder::class);
+        //$this->call(StudentTableSeeder::class);
+        //$this->call(RegistrationTableSeeder::class);
+        //$this->call(ClassDateTableSeeder::class);
+        //$this->call(FrequencyTableSeeder::class);
+        //$this->call(ScoreTableSeeder::class);
     }
 }

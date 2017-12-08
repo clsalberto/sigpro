@@ -26,6 +26,20 @@ if (!function_exists("proper_case")) {
     }
 }
 
+if (!function_exists("ctoi")) {
+    function ctoi($number)
+    {
+        return (int) ($number * 10);
+    }
+}
+
+if (!function_exists("ctof")) {
+    function ctof($number)
+    {
+        return (float) ($number / 10);
+    }
+}
+
 if (!function_exists("generate_password")) {
     function generate_password($size = 8, $uppercase = true, $numbers = true, $symbols = false)
     {

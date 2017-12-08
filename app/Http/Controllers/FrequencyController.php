@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ClassDate;
 use App\Room;
 use App\Frequency;
 
@@ -75,6 +76,7 @@ class FrequencyController extends Controller
      */
     public function active($class_date_id, $registration_id)
     {
+        ClassDate::find($class_date_id)->update(['active' => true]);
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
             ->update(['presence' => true]);
@@ -87,6 +89,7 @@ class FrequencyController extends Controller
      */
     public function inactive($class_date_id, $registration_id)
     {
+        ClassDate::find($class_date_id)->update(['active' => true]);
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
             ->update(['presence' => false]);

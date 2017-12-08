@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ClassDate;
 use App\Score;
 use Illuminate\Http\Request;
 
@@ -77,6 +78,7 @@ class ScoreController extends Controller
      */
     public function update(Request $request, $room_id, $class_date_id)
     {
+        ClassDate::find($class_date_id)->update(['active' => true]);
 
         $registrations = collect($request->registration_id);
         $collection = $registrations->combine($request->punctuation);
@@ -85,7 +87,7 @@ class ScoreController extends Controller
         {
             Score::where('registration_id', $registration_id)
                 ->where('class_date_id', $class_date_id)
-                ->update(['punctuation' => $punctuation]);
+                ->update(['punctuation' => ctoi($punctuation)]);
         }
 
         return redirect()->route('scores.students', [$room_id, $class_date_id])->with('success', 'Operação realizada com sucesso!');
