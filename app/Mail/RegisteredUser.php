@@ -33,6 +33,12 @@ class RegisteredUser extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.registered');
+        return $this->markdown('emails.registered')
+            ->subject('Registro de novo usuário')
+            ->with([
+                'name'     => $this->user->name,
+                'email' => $this->user->email,
+                'password'     => $this->password
+            ]);
     }
 }

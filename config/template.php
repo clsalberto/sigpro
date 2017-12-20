@@ -11,7 +11,7 @@ return [
 
     'institution' => [
 
-	    'name' => 'Pronatec - UECE',
+	    'name' => 'PRONATEC - UECE',
 
 	    'address' => 'Rua Teste, 345',
 
@@ -19,5 +19,5 @@ return [
 
     ],
 
-    'version' => '1.0',
+    'version' => '1.1.3',
 ];
