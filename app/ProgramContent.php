@@ -4,14 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Frequency extends Model
+class ProgramContent extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'frequencies';
+    protected $table = 'program_contents';
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'class_date_id';
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +26,7 @@ class Frequency extends Model
      * @var array
      */
     protected $fillable = [
-        'class_date_id', 'registration_id', 'presence_a', 'presence_b', 'presence_c', 'presence_d',
+        'class_date_id', 'content',
     ];
 
     /**
@@ -30,15 +37,5 @@ class Frequency extends Model
     public function classDate()
     {
         return $this->belongsTo(ClassDate::class);
-    }
-
-    /**
-     * Relationship with registration.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function registration()
-    {
-        return $this->belongsTo(Registration::class);
     }
 }

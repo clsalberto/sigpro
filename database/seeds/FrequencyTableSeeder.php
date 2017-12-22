@@ -23,7 +23,10 @@ class FrequencyTableSeeder extends Seeder
             foreach ($classDates as $classDate) {
                 $registration->frequencies()->create([
                     'class_date_id' => $classDate->id,
-                    'presence' => false
+                    'presence_a' => false,
+                    'presence_b' => false,
+                    'presence_c' => false,
+                    'presence_d' => false
                 ]);
             }
         }

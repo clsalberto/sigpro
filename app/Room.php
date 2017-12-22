@@ -19,7 +19,7 @@ class Room extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'course_id', 'module_id', 'pact_id', 'city_id',
+        'id', 'course_id', 'module_id', 'pact_id', 'city_id', 'shift', 'inicial_date', 'final_date',
     ];
 
     /**

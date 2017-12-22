@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 
 use App\Room;
-use Carbon\Carbon;
 
 class ClassDateTableSeeder extends Seeder
 {
@@ -18,14 +17,16 @@ class ClassDateTableSeeder extends Seeder
 
         foreach ($rooms as $room) {
 
-            $date = Carbon::now();
+            $idate = new DateTime($room->initial_date);
+            $fdate = new DateTime($room->final_date);
 
-        	for ($i = 1; $i < 25; $i++) {
-        		$classDate = $room->classDates()->create([
+        	while ($idate <= $fdate) {
+        		$room->classDates()->create([
         			'room_id' => $room->id,
-        			'class_date' => $date->addDays(3),
-        			'avaliation' => $avaliation = ($i % 5 == 0) ? true : false
+        			'class_date' => $idate->format('Y-m-d'),
+        			'avaliation' => false
         		]);
+                $idate = $idate->modify('+1day');
         	}
 
         }

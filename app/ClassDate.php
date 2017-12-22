@@ -32,6 +32,16 @@ class ClassDate extends Model
     /**
      * Relationship with room.
      *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function programContent()
+    {
+        return $this->hasOne(ProgramContent::class);
+    }
+
+    /**
+     * Relationship with room.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function room()
