@@ -43,7 +43,7 @@
 
                                     <div class="attachment-block clearfix">
                                         <h5 class="attachment-heading">
-                                            {{ $room->id . ' - ' . $room->module->description }}
+                                            {!! '<strong>' . $room->id . '</strong> - ' . $room->module->description . ' (<strong>' . $room->shift_description . '</strong>)' !!}
                                         </h5>
                                         <div class="attachment-text">
                                             <div class="btn-group pull-right">

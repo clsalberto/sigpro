@@ -50,6 +50,11 @@
 					</tr>
 				@endforeach
 				</tbody>
+				<tfoot>
+                    <tr>
+                        <th colspan="3">{{ 'Registros: ' . count($registrations) }}</th>
+                    </tr>
+                </tfoot>
 			</table>
 		</div>
 		<!-- /.box-body -->

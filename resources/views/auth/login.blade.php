@@ -23,7 +23,7 @@
                 {!! csrf_field() !!}
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="{{ trans('template.fields.email') }}">
+                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" autofocus="true" placeholder="{{ trans('template.fields.email') }}">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     @if ($errors->has('email'))
                         <span class="help-block">

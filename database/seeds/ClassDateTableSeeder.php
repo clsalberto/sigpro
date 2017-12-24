@@ -28,7 +28,6 @@ class ClassDateTableSeeder extends Seeder
         		]);
                 $idate = $idate->modify('+1day');
         	}
-
         }
     }
 }

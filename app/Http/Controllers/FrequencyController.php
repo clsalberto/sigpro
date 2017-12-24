@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\ClassDate;
+
 use App\Room;
 use App\Frequency;
+use App\ClassDate;
+use App\Registration;
 
 class FrequencyController extends Controller
 {
@@ -74,12 +76,17 @@ class FrequencyController extends Controller
      * @param  int  $registration_id
      * @return \Illuminate\Http\Response
      */
-    public function active($class_date_id, $registration_id)
+    public function active_a($class_date_id, $registration_id)
     {
         ClassDate::find($class_date_id)->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload + 1;
+        $registration->update(['workload' => $workload]);
+
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
-            ->update(['presence' => true]);
+            ->update(['presence_a' => true]);
     }
 
     /**
@@ -87,11 +94,130 @@ class FrequencyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function inactive($class_date_id, $registration_id)
+    public function inactive_a($class_date_id, $registration_id)
     {
         ClassDate::find($class_date_id)->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload - 1;
+        $registration->update(['workload' => $workload]);
+
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
-            ->update(['presence' => false]);
+            ->update(['presence_a' => false]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $class_date_id
+     * @param  int  $registration_id
+     * @return \Illuminate\Http\Response
+     */
+    public function active_b($class_date_id, $registration_id)
+    {
+        ClassDate::find($class_date_id)->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload + 1;
+        $registration->update(['workload' => $workload]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update(['presence_b' => true]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inactive_b($class_date_id, $registration_id)
+    {
+        ClassDate::find($class_date_id)->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload - 1;
+        $registration->update(['workload' => $workload]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update(['presence_b' => false]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $class_date_id
+     * @param  int  $registration_id
+     * @return \Illuminate\Http\Response
+     */
+    public function active_c($class_date_id, $registration_id)
+    {
+        ClassDate::find($class_date_id)->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload + 1;
+        $registration->update(['workload' => $workload]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update(['presence_c' => true]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inactive_c($class_date_id, $registration_id)
+    {
+        ClassDate::find($class_date_id)->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload - 1;
+        $registration->update(['workload' => $workload]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update(['presence_c' => false]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $class_date_id
+     * @param  int  $registration_id
+     * @return \Illuminate\Http\Response
+     */
+    public function active_d($class_date_id, $registration_id)
+    {
+        ClassDate::find($class_date_id)->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload + 1;
+        $registration->update(['workload' => $workload]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update(['presence_d' => true]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inactive_d($class_date_id, $registration_id)
+    {
+        ClassDate::find($class_date_id)->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload - 1;
+        $registration->update(['workload' => $workload]);
+        
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update(['presence_d' => false]);
     }
 }

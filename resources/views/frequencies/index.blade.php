@@ -49,6 +49,11 @@
                     </tr>
                 @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4">{{ 'Registros: ' . count($dates) }}</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <!-- /.box-body -->

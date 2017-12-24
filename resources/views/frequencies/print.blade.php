@@ -58,9 +58,9 @@
 	            <thead>
 	                <tr>
 						<th class="col-md-1">ID</th>
-						<th class="col-md-8">Nome</th>
+						<th class="col-md-5">Nome</th>
 						<th class="col-md-2">CPF</th>
-						<th class="col-md-1">Frequência</th>
+						<th class="col-md-4">Frequência</th>
 	                </tr>
 	            </thead>
 	            <tbody>
@@ -69,10 +69,22 @@
 	                    <td>{{ $registration->student->id }}</td>
 	                    <td>{{ $registration->student->full_name }}</td>
 	                    <td>{{ $registration->student->cpf }}</td>
-	                    <td>{!! $registration->frequency($class_date->id, $registration->id)->presence ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}</td>
+	                    <td>
+												<b>A</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_a ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!} 
+												<b>B</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_b ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!} 
+												<b>C</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_c ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+												@if ($room->shift == 'D')
+													<b>D</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_d ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+												@endif
+												</td>
 	                </tr>
 	            @endforeach
 	            </tbody>
+							<tfoot>
+                    <tr>
+                        <th colspan="4">{{ 'Registros: ' . count($registrations) }}</th>
+                    </tr>
+                </tfoot>
 	          </table>
 	        </div>
 	        <!-- /.col -->

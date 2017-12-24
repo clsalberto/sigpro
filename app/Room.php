@@ -81,4 +81,14 @@ class Room extends Model
     {
         return $this->hasMany(ClassDate::class);
     }
+
+    /**
+     * Get the room's is daytime or nighttime.
+     *
+     * @return string
+     */
+    public function getShiftDescriptionAttribute()
+    {
+        return $this->shift == 'D' ? 'Diurno' : 'Noturno';
+    }
 }

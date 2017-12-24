@@ -51,8 +51,17 @@ Route::get('/room/{id}/frequencies', 'FrequencyController@index')->name('frequen
 Route::get('/room/{room_id}/{class_date_id}/frequencies', 'FrequencyController@show')->name('frequencies.students');
 Route::get('/room/{room_id}/{class_date_id}/frequencies/print', 'FrequencyController@print')->name('frequencies.students.print');
 
-Route::post('/frequency/{class_date_id}/{registration_id}/active', 'FrequencyController@active');
-Route::post('/frequency/{class_date_id}/{registration_id}/inactive', 'FrequencyController@inactive');
+Route::post('/frequency/{class_date_id}/{registration_id}/active_a', 'FrequencyController@active_a');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_a', 'FrequencyController@inactive_a');
+
+Route::post('/frequency/{class_date_id}/{registration_id}/active_b', 'FrequencyController@active_b');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_b', 'FrequencyController@inactive_b');
+
+Route::post('/frequency/{class_date_id}/{registration_id}/active_c', 'FrequencyController@active_c');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_c', 'FrequencyController@inactive_c');
+
+Route::post('/frequency/{class_date_id}/{registration_id}/active_d', 'FrequencyController@active_d');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_d', 'FrequencyController@inactive_d');
 
 
 /*

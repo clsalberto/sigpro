@@ -5,7 +5,7 @@ return [
         'color' => 'green-light',
     ],
 
-    'logo' => '<i class="fa fa-dot-circle-o"></i> Sig<b>Pro</b>',
+    'logo' => '<i class="fa fa-dot-circle-o"></i> SIG<b>Pro</b>',
 
     'logo_mini' => '<i class="fa fa-dot-circle-o"></i>',
 

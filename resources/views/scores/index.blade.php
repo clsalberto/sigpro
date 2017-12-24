@@ -36,19 +36,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($dates as $date)
-                    <tr>
-                        <td>{{ $date->id }}</td>
-                        <td>{!! format_date($date->class_date) !!}</td>
-                        <td>{!! $date->avaliation ? '<small class="label label-success">Sim</small>' : '<small class="label label-default">Não</small>' !!}</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="{{ route('scores.students', [$room->id, $date->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Lançar</a>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
+                    @foreach ($dates as $date)
+                        <tr>
+                            <td>{{ $date->id }}</td>
+                            <td>{!! format_date($date->class_date) !!}</td>
+                            <td>{!! $date->avaliation ? '<small class="label label-success">Sim</small>' : '<small class="label label-default">Não</small>' !!}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{ route('scores.students', [$room->id, $date->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Lançar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4">{{ 'Registros: ' . count($dates) }}</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <!-- /.box-body -->
