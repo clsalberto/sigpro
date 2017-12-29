@@ -68,4 +68,14 @@ class ClassDate extends Model
     {
         return $this->hasMany(Score::class);
     }
+
+    /**
+     * Get the class date has content.
+     *
+     * @return string
+     */
+    public function getHasContentAttribute()
+    {
+        return count($this->programContent) > 0 ? true : false;
+    }
 }

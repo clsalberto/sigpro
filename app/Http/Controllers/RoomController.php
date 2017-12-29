@@ -25,7 +25,9 @@ class RoomController extends Controller
     public function index()
     {
         $pact = Pact::all()->last();
-        $rooms = Auth::user()->rooms;
+        $user = Auth::user();
+        //$modalities = $user->modalities;
+        $rooms = $user->rooms;
         $rooms = collect($rooms->groupBy('city.name'));
 
         return view('rooms.index', compact('rooms'));
