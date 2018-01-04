@@ -72,10 +72,11 @@ class ClassDate extends Model
     /**
      * Get the class date has content.
      *
-     * @return string
+     * @return boolean
      */
     public function getHasContentAttribute()
     {
-        return count($this->programContent) > 0 ? true : false;
+        $content = collect($this->programContent);
+        return $content->count() > 0 ? true : false;
     }
 }

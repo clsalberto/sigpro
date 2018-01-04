@@ -70,13 +70,13 @@
 	                    <td>{{ $registration->student->full_name }}</td>
 	                    <td>{{ $registration->student->cpf }}</td>
 	                    <td>
-												<b>A</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_a ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!} 
-												<b>B</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_b ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!} 
-												<b>C</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_c ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
-												@if ($room->shift == 'D')
-													<b>D</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_d ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
-												@endif
-												</td>
+							<b>A</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_a ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+							<b>B</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_b ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+							<b>C</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_c ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+							@if ($room->shift == 'D')
+								<b>D</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_d ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+							@endif
+						</td>
 	                </tr>
 	            @endforeach
 	            </tbody>

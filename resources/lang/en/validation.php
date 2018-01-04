@@ -131,6 +131,7 @@ return [
         'type'                        => 'type',
         'address'                     => 'address',
         'cpf'                         => 'CPF',
+        'content'                     => 'content',
     ],
 
 ];

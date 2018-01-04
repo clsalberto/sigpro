@@ -22,7 +22,9 @@
 
 		<!-- /.box-header -->
 		<div class="box-header">
-			<h3 class="box-title">{{ $room->course->name }} <br><small>{{ $room->module->description }}</small></h3>
+			<h3 class="box-title">{{ $room->course->name }} <br>
+                <small>{{ $room->module->description }}</small>
+            </h3>
 			<div class="box-comment pull-right">{!! format_date($class_date->class_date) !!}</div>
 		</div>
 		<!-- /.box-header -->

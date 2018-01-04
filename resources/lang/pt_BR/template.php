@@ -23,6 +23,7 @@ return [
         'gender_female'               => 'Feminino',
         'address'                     => 'Endereço',
         'cpf'                         => 'CPF',
+        'content'                     => 'Conteúdo Programático',
     ],
 
     'buttons' => [
@@ -32,6 +33,7 @@ return [
         'log_out'                     => 'Sair',
         'reset_password'              => 'Trocar a senha',
         'send_password_reset_link'    => 'Enviar link de redefinição de senha',
+        'edit'                        => 'Editar',
     ],
 
     'links' => [

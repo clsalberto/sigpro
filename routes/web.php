@@ -1,7 +1,5 @@
 <?php
 
-use App\ClassDate;
-
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -74,7 +72,9 @@ Route::get('/room/{room_id}/{class_date_id}/scores', 'ScoreController@show')->na
 Route::post('/room/{room_id}/{class_date_id}/scores', 'ScoreController@update')->name('scores.students.update');
 Route::get('/room/{room_id}/{class_date_id}/scores/print', 'ScoreController@print')->name('scores.students.print');
 
-Route::get('/test', function() {
-	$pc = ClassDate::find(10)->programContent;
-	return is_null($pc);
-});
+/*
+ * Routes programs content.
+ */
+Route::get('/room/{room_id}/{class_date_id}/content', 'ProgramContentController@index')->name('content');
+Route::post('/room/{room_id}/{class_date_id}/content', 'ProgramContentController@register')->name('content.register');
+Route::get('/room/{room_id}/{class_date_id}/content/show', 'ProgramContentController@show')->name('content.show');

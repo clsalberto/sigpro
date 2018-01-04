@@ -30,9 +30,9 @@
                 <thead>
                 <tr>
                     <th class="col-md-1">ID</th>
-                    <th class="col-md-8">Data</th>
+                    <th class="col-md-6">Data</th>
                     <th class="col-md-2">Avaliação?</th>
-                    <th class="col-md-1"></th>
+                    <th class="col-md-3"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,7 +43,12 @@
                         <td>{!! $date->avaliation ? '<small class="label label-success">Sim</small>' : '<small class="label label-default">Não</small>' !!}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="{{ route('frequencies.students', [$room->id, $date->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Lançar</a>
+                                @if($date->has_content)
+                                    <a href="{{ route('content.show', [$room->id, $date->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-cog"></i> Conteúdos </a>
+                                    <a href="{{ route('frequencies.students', [$room->id, $date->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Lançar Frequência </a>
+                                @else
+                                    <a href="{{ route('content', [$room->id, $date->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-cog"></i> Conteúdos </a>
+                                @endif
                             </div>
                         </td>
                     </tr>

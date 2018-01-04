@@ -17,6 +17,7 @@ return [
         'type'                        => 'Type',
         'address'                     => 'Address',
         'cpf'                         => 'CPF',
+        'content'                     => 'content',
     ],
 
     'buttons' => [
@@ -26,6 +27,7 @@ return [
         'log_out'                     => 'Log Out',
         'reset_password'              => 'Reset Password',
         'send_password_reset_link'    => 'Send Password Reset Link',
+        'edit'                        => 'Edit',
     ],
 
     'links' => [

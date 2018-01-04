@@ -129,6 +129,7 @@ return [
         'type'                        => 'tipo',
         'address'                     => 'endereço',
         'cpf'                         => 'CPF',
+        'content'                     => 'conteúdo programático',
     ],
 
 ];
