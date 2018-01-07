@@ -73,7 +73,9 @@ class ScoreController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param $room_id
+     * @param $class_date_id
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $room_id, $class_date_id)
@@ -82,36 +84,40 @@ class ScoreController extends Controller
 
         $registrations = collect($request->registration_id);
 
-        $collection_a = $registrations->combine($request->punctuation_a);
-        foreach ($collection_a as $registration_id => $punctuation_a)
-        {
-            Score::where('registration_id', $registration_id)
-                ->where('class_date_id', $class_date_id)
-                ->update(['punctuation_a' => ctoi($punctuation_a)]);
+        if (isset($request->punctuation_a)) {
+            $collection_a = $registrations->combine($request->punctuation_a);
+            foreach ($collection_a as $registration_id => $punctuation_a) {
+                Score::where('registration_id', $registration_id)
+                    ->where('class_date_id', $class_date_id)
+                    ->update(['punctuation_a' => ctoi($punctuation_a)]);
+            }
         }
 
-        $collection_b = $registrations->combine($request->punctuation_b);
-        foreach ($collection_b as $registration_id => $punctuation_b)
-        {
-            Score::where('registration_id', $registration_id)
-                ->where('class_date_id', $class_date_id)
-                ->update(['punctuation_b' => ctoi($punctuation_b)]);
+        if (isset($request->punctuation_b)) {
+            $collection_b = $registrations->combine($request->punctuation_b);
+            foreach ($collection_b as $registration_id => $punctuation_b) {
+                Score::where('registration_id', $registration_id)
+                    ->where('class_date_id', $class_date_id)
+                    ->update(['punctuation_b' => ctoi($punctuation_b)]);
+            }
         }
 
-        $collection_c = $registrations->combine($request->punctuation_c);
-        foreach ($collection_c as $registration_id => $punctuation_c)
-        {
-            Score::where('registration_id', $registration_id)
-                ->where('class_date_id', $class_date_id)
-                ->update(['punctuation_c' => ctoi($punctuation_c)]);
+        if (isset($request->punctuation_c)) {
+            $collection_c = $registrations->combine($request->punctuation_c);
+            foreach ($collection_c as $registration_id => $punctuation_c) {
+                Score::where('registration_id', $registration_id)
+                    ->where('class_date_id', $class_date_id)
+                    ->update(['punctuation_c' => ctoi($punctuation_c)]);
+            }
         }
 
-        $collection_d = $registrations->combine($request->punctuation_d);
-        foreach ($collection_d as $registration_id => $punctuation_d)
-        {
-            Score::where('registration_id', $registration_id)
-                ->where('class_date_id', $class_date_id)
-                ->update(['punctuation_d' => ctoi($punctuation_d)]);
+        if (isset($request->punctuation_d)) {
+            $collection_d = $registrations->combine($request->punctuation_d);
+            foreach ($collection_d as $registration_id => $punctuation_d) {
+                Score::where('registration_id', $registration_id)
+                    ->where('class_date_id', $class_date_id)
+                    ->update(['punctuation_d' => ctoi($punctuation_d)]);
+            }
         }
 
         return redirect()->route('scores.students', [$room_id, $class_date_id])->with('success', 'Operação realizada com sucesso!');
