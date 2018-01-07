@@ -20,13 +20,16 @@ class ClassDateTableSeeder extends Seeder
             $idate = new DateTime($room->initial_date);
             $fdate = new DateTime($room->final_date);
 
+            $inc = 1;
+
         	while ($idate <= $fdate) {
         		$room->classDates()->create([
         			'room_id' => $room->id,
         			'class_date' => $idate->format('Y-m-d'),
-        			'avaliation' => false
+        			'avaliation' => fmod($inc, 5) == 0 ? true : false
         		]);
                 $idate = $idate->modify('+1day');
+                $inc++;
         	}
         }
     }

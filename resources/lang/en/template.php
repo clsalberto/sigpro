@@ -18,6 +18,7 @@ return [
         'address'                     => 'Address',
         'cpf'                         => 'CPF',
         'content'                     => 'content',
+        'formula'                     => 'Formula',
     ],
 
     'buttons' => [

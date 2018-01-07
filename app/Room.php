@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed shift
+ * @property mixed formula
+ */
 class Room extends Model
 {
     /**
@@ -19,7 +23,7 @@ class Room extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'course_id', 'module_id', 'pact_id', 'city_id', 'shift', 'inicial_date', 'final_date',
+        'id', 'course_id', 'module_id', 'pact_id', 'city_id', 'shift', 'formula_id', 'inicial_date', 'final_date',
     ];
 
     /**
@@ -63,6 +67,16 @@ class Room extends Model
     }
 
     /**
+     * Get of the formula.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function formula()
+    {
+        return $this->belongsTo(Formula::class);
+    }
+
+    /**
      * Get all of the class dates for the rooms.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -90,5 +104,16 @@ class Room extends Model
     public function getShiftDescriptionAttribute()
     {
         return $this->shift == 'D' ? 'Diurno' : 'Noturno';
+    }
+
+    /**
+     * Get the class date has formula.
+     *
+     * @return boolean
+     */
+    public function getHasFormulaAttribute()
+    {
+        $formula = $this->formula;
+        return $formula->id > 1 ? true : false;
     }
 }

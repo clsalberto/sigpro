@@ -40,7 +40,13 @@
                     <tr>
                         <td>{{ $date->id }}</td>
                         <td>{!! format_date($date->class_date) !!}</td>
-                        <td>{!! $date->avaliation ? '<small class="label label-success">Sim</small>' : '<small class="label label-default">Não</small>' !!}</td>
+                        <td>
+                            @if($date->avaliation)
+                                <a href="{{ route('disable.score', [$room->id, $date->id]) }}"><small class="label label-success">Sim</small></a>
+                            @else
+                                <a href="{{ route('enable.score', [$room->id, $date->id]) }}"><small class="label label-default">Não</small></a>
+                            @endif
+                        </td>
                         <td>
                             <div class="btn-group">
                                 @if($date->has_content)

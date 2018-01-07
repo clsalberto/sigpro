@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Database\Seeder;
+
 use App\ClassDate;
 use App\Registration;
-use Illuminate\Database\Seeder;
 
 class ScoreTableSeeder extends Seeder
 {

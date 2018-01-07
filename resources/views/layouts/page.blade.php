@@ -90,7 +90,7 @@
 
             <!-- Main content -->
             <section class="content container-fluid">
-
+            
                 @include('partials.messages.message')
                 @yield('content')
 
@@ -114,7 +114,5 @@
 
     </div>
     <!-- ./wrapper -->
-
-
 
 @stop

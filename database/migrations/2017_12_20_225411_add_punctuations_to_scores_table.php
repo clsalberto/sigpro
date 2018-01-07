@@ -18,6 +18,7 @@ class AddPunctuationsToScoresTable extends Migration
             $table->integer('punctuation_a')->default(0);
             $table->integer('punctuation_b')->default(0);
             $table->integer('punctuation_c')->default(0);
+            $table->integer('punctuation_d')->default(0);
         });
     }
 
@@ -32,6 +33,7 @@ class AddPunctuationsToScoresTable extends Migration
             $table->dropColumn('punctuation_a');
             $table->dropColumn('punctuation_b');
             $table->dropColumn('punctuation_c');
+            $table->dropColumn('punctuation_d');
             $table->integer('punctuation')->default(0);
         });
     }

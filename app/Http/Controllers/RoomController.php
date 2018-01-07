@@ -26,7 +26,7 @@ class RoomController extends Controller
     {
         $pact = Pact::all()->last();
         $user = Auth::user();
-        //$modalities = $user->modalities;
+        $modalities = $user->modalities;
         $rooms = $user->rooms;
         $rooms = collect($rooms->groupBy('city.name'));
 

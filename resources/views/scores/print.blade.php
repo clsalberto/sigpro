@@ -58,8 +58,11 @@
 					<thead>
 					<tr>
 						<th class="col-md-1">ID</th>
-						<th class="col-md-8">Nome</th>
-						<th class="col-md-2">CPF</th>
+						<th class="col-md-4">Nome</th>
+						<th class="col-md-3">CPF</th>
+						<th class="col-md-1">Notas</th>
+						<th class="col-md-1">Notas</th>
+						<th class="col-md-1">Notas</th>
 						<th class="col-md-1">Notas</th>
 					</tr>
 					</thead>
@@ -69,7 +72,10 @@
 							<td>{{ $registration->student->id }}</td>
 							<td>{{ $registration->student->full_name }}</td>
 							<td>{{ $registration->student->cpf }}</td>
-							<td>{{ $registration->score($class_date->id, $registration->id)->punctuation }}</td>
+							<td>{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_a) }}</td>
+							<td>{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_b) }}</td>
+							<td>{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_c) }}</td>
+							<td>{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_d) }}</td>
 						</tr>
 					@endforeach
 					</tbody>

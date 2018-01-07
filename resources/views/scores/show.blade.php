@@ -31,22 +31,36 @@
 			<table class="table table-hover">
 				<thead>
 				<tr>
-					<th class="col-md-1">ID</th>
-					<th class="col-md-8">Nome</th>
-					<th class="col-md-2">CPF</th>
-					<th class="col-md-1">Notas</th>
+					<th class="col-md-1 hidden-xs">ID</th>
+					<th class="col-md-4 col-xs-3">Nome</th>
+					<th class="col-lg-2 hidden-md hidden-xs">CPF</th>
+					<th class="col-md-1 col-xs-2">AP1</th>
+					@if($registrations->first()->score($class_date->id, $registrations->first()->id)->has_form)
+						<th class="col-md-1 col-xs-2">AP2</th>
+					@endif
+					<th class="col-md-1 col-xs-2">AF</th>
+					<th class="col-md-1 col-xs-1">MD</th>
+					<th class="col-md-1 col-xs-2">RCP</th>
 				</tr>
 				</thead>
 				<tbody>
 				@foreach ($registrations as $registration)
 					<tr>
-						<td>{{ $registration->student->id }}</td>
-						<td>{{ $registration->student->full_name }}</td>
-						<td>{{ $registration->student->cpf }}</td>
-						<td>
+						<td class="col-md-1 hidden-xs">{{ $registration->student->id }}</td>
+						<td class="col-md-4 col-xs-2">{{ $registration->student->full_name }}</td>
+						<td class="col-lg-2 hidden-md hidden-xs">{{ $registration->student->cpf }}</td>
+						<td class="col-md-1 col-xs-2">
 							<input type="hidden" name="registration_id[]" value="{{ $registration->id }}">
-							<input class="form-control" name="punctuation[]" value="{{ $registration->score($class_date->id, $registration->id)->punctuation }}">
+							<input type="text" class="form-control" name="punctuation_a[]" value="{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_a) }}" data-inputmask="'mask': ['9[9].9']" data-mask>
 						</td>
+						@if($registration->score($class_date->id, $registration->id)->has_form)
+							<td class="col-md-1 col-xs-2"><input type="text" class="form-control" name="punctuation_b[]" value="{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_b) }}" data-inputmask="'mask': ['9[9].9']" data-mask></td>
+						@endif
+						<td class="col-md-1 col-xs-2"><input type="text" class="form-control" name="punctuation_c[]" value="{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_c) }}" data-inputmask="'mask': ['9[9].9']" data-mask></td>
+						<td class="col-md-1 col-xs-1">
+							{{ $registration->score($class_date->id, $registration->id)->average }}
+						</td>
+						<td class="col-md-1 col-xs-2"><input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_d) }}" data-inputmask="'mask': ['9[9].9']" data-mask></td>
 					</tr>
 				@endforeach
 				</tbody>
@@ -72,3 +86,12 @@
 
 @endsection
 
+@section('scripts')
+    <script src="{{ asset('plugins/input-mask/jquery.inputmask.js') }}"></script>
+	<script src="{{ asset('plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
+    <script>
+        $(function () {
+            $('[data-mask]').inputmask();
+        });
+    </script>
+@stop

@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed programContent
+ */
 class ClassDate extends Model
 {
     /**

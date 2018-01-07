@@ -132,6 +132,7 @@ return [
         'address'                     => 'address',
         'cpf'                         => 'CPF',
         'content'                     => 'content',
+        'formula_id'                  => 'formula',
     ],
 
 ];

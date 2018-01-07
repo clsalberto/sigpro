@@ -24,6 +24,7 @@ return [
         'address'                     => 'Endereço',
         'cpf'                         => 'CPF',
         'content'                     => 'Conteúdo Programático',
+        'formula'                     => 'Fórmula',
     ],
 
     'buttons' => [

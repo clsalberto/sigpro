@@ -81,13 +81,37 @@ class ScoreController extends Controller
         ClassDate::find($class_date_id)->update(['active' => true]);
 
         $registrations = collect($request->registration_id);
-        $collection = $registrations->combine($request->punctuation);
 
-        foreach ($collection as $registration_id => $punctuation)
+        $collection_a = $registrations->combine($request->punctuation_a);
+        foreach ($collection_a as $registration_id => $punctuation_a)
         {
             Score::where('registration_id', $registration_id)
                 ->where('class_date_id', $class_date_id)
-                ->update(['punctuation' => ctoi($punctuation)]);
+                ->update(['punctuation_a' => ctoi($punctuation_a)]);
+        }
+
+        $collection_b = $registrations->combine($request->punctuation_b);
+        foreach ($collection_b as $registration_id => $punctuation_b)
+        {
+            Score::where('registration_id', $registration_id)
+                ->where('class_date_id', $class_date_id)
+                ->update(['punctuation_b' => ctoi($punctuation_b)]);
+        }
+
+        $collection_c = $registrations->combine($request->punctuation_c);
+        foreach ($collection_c as $registration_id => $punctuation_c)
+        {
+            Score::where('registration_id', $registration_id)
+                ->where('class_date_id', $class_date_id)
+                ->update(['punctuation_c' => ctoi($punctuation_c)]);
+        }
+
+        $collection_d = $registrations->combine($request->punctuation_d);
+        foreach ($collection_d as $registration_id => $punctuation_d)
+        {
+            Score::where('registration_id', $registration_id)
+                ->where('class_date_id', $class_date_id)
+                ->update(['punctuation_d' => ctoi($punctuation_d)]);
         }
 
         return redirect()->route('scores.students', [$room_id, $class_date_id])->with('success', 'Operação realizada com sucesso!');

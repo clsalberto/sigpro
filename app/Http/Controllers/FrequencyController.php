@@ -70,6 +70,36 @@ class FrequencyController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $room_id
+     * @param  int  $class_date_id
+     * @return \Illuminate\Http\Response
+     */
+    public function enableScore($room_id, $class_date_id)
+    {
+        $room = Room::find($room_id);
+        $room->classDates()->find($class_date_id)->update(['avaliation' => true]);
+
+        return redirect()->route('scores', $room_id)->with('info', 'Informada nova data de avaliação!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $room_id
+     * @param  int  $class_date_id
+     * @return \Illuminate\Http\Response
+     */
+    public function disableScore($room_id, $class_date_id)
+    {
+        $room = Room::find($room_id);
+        $room->classDates()->find($class_date_id)->update(['avaliation' => false]);
+
+        return redirect()->route('scores', $room_id)->with('info', 'Cancelada data de avaliação!');
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  int  $class_date_id

@@ -4,6 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed punctuation_a
+ * @property mixed punctuation_c
+ * @property mixed punctuation_b
+ * @property mixed registration
+ */
 class Score extends Model
 {
     /**
@@ -19,7 +25,7 @@ class Score extends Model
      * @var array
      */
     protected $fillable = [
-        'class_date_id', 'registration_id', 'punctuation',
+        'class_date_id', 'registration_id', 'punctuation_a', 'punctuation_b', 'punctuation_c', 'punctuation_d',
     ];
 
     /**
@@ -41,4 +47,33 @@ class Score extends Model
     {
         return $this->belongsTo(Registration::class);
     }
+
+    /**
+     * Get the room's is daytime or nighttime.
+     *
+     * @return string
+     */
+    public function getAverageAttribute()
+    {
+        $formula = $this->registration->room->formula_id;
+        if ($formula == 2) {
+            return ctof(intval(($this->punctuation_a + $this->punctuation_c) / 2));
+        } elseif ($formula == 3) {
+            return ctof(intval(($this->punctuation_a + $this->punctuation_b + $this->punctuation_c) / 3));
+        } else {
+            return ctof('0');
+        }
+    }
+
+    /**
+     * Get the score has form.
+     *
+     * @return boolean
+     */
+    public function getHasFormAttribute()
+    {
+        $formula = (int) $this->registration->room->formula_id;
+        return $formula > 2 ? true : false;
+    }
+
 }

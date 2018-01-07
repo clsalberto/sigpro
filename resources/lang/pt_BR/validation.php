@@ -130,6 +130,7 @@ return [
         'address'                     => 'endereço',
         'cpf'                         => 'CPF',
         'content'                     => 'conteúdo programático',
+        'formula_id'                  => 'fórmula',
     ],
 
 ];

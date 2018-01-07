@@ -35,8 +35,32 @@ if (!function_exists("ctoi")) {
 
 if (!function_exists("ctof")) {
     function ctof($number)
-    {
-        return (float) ($number / 10);
+    {   
+        if ($number <= 0) {
+            return "0.0";
+        } elseif ($number == 10) {
+            return "1.0";
+        } elseif ($number == 20) {
+            return "2.0";
+        } elseif ($number == 30) {
+            return "3.0";
+        } elseif ($number == 40) {
+            return "4.0";
+        } elseif ($number == 50) {
+            return "5.0";
+        } elseif ($number == 60) {
+            return "6.0";
+        } elseif ($number == 70) {
+            return "7.0";
+        } elseif ($number == 80) {
+            return "8.0";
+        } elseif ($number == 90) {
+            return "9.0";
+        } elseif ($number >= 100) {
+            return "10.0";
+        } else {
+            return (float) ($number / 10);
+        }        
     }
 }
 

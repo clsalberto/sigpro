@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('plugins/Ionicons/css/ionicons.css') }}">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 
     @yield('stylesheets')
 
@@ -43,6 +45,7 @@
     <!-- Scripts -->
     <script src="{{ asset('plugins/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 

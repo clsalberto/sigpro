@@ -51,6 +51,9 @@ Route::get('/room/{id}/frequencies', 'FrequencyController@index')->name('frequen
 Route::get('/room/{room_id}/{class_date_id}/frequencies', 'FrequencyController@show')->name('frequencies.students');
 Route::get('/room/{room_id}/{class_date_id}/frequencies/print', 'FrequencyController@print')->name('frequencies.students.print');
 
+Route::get('/room/{room_id}/{class_date_id}/enable', 'FrequencyController@enableScore')->name('enable.score');
+Route::get('/room/{room_id}/{class_date_id}/disable', 'FrequencyController@disableScore')->name('disable.score');
+
 Route::post('/frequency/{class_date_id}/{registration_id}/active_a', 'FrequencyController@active_a');
 Route::post('/frequency/{class_date_id}/{registration_id}/inactive_a', 'FrequencyController@inactive_a');
 
@@ -62,7 +65,6 @@ Route::post('/frequency/{class_date_id}/{registration_id}/inactive_c', 'Frequenc
 
 Route::post('/frequency/{class_date_id}/{registration_id}/active_d', 'FrequencyController@active_d');
 Route::post('/frequency/{class_date_id}/{registration_id}/inactive_d', 'FrequencyController@inactive_d');
-
 
 /*
  * Routes scores.
@@ -78,3 +80,9 @@ Route::get('/room/{room_id}/{class_date_id}/scores/print', 'ScoreController@prin
 Route::get('/room/{room_id}/{class_date_id}/content', 'ProgramContentController@index')->name('content');
 Route::post('/room/{room_id}/{class_date_id}/content', 'ProgramContentController@register')->name('content.register');
 Route::get('/room/{room_id}/{class_date_id}/content/show', 'ProgramContentController@show')->name('content.show');
+
+/*
+ * Routes has formula.
+ */
+Route::get('/room/{id}/formula', 'FormulaController@index')->name('formula');
+Route::post('/room/{id}/formula', 'FormulaController@update')->name('formula.update');
