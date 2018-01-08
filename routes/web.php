@@ -54,6 +54,9 @@ Route::get('/room/{room_id}/{class_date_id}/frequencies/print', 'FrequencyContro
 Route::get('/room/{room_id}/{class_date_id}/enable', 'FrequencyController@enableScore')->name('enable.score');
 Route::get('/room/{room_id}/{class_date_id}/disable', 'FrequencyController@disableScore')->name('disable.score');
 
+Route::get('/room/{room_id}/{class_date_id}/frequency/check', 'FrequencyController@checkFrequency')->name('check.frequency');
+Route::get('/room/{room_id}/{class_date_id}/score/check', 'FrequencyController@checkScore')->name('check.score');
+
 Route::post('/frequency/{class_date_id}/{registration_id}/active_a', 'FrequencyController@active_a');
 Route::post('/frequency/{class_date_id}/{registration_id}/inactive_a', 'FrequencyController@inactive_a');
 

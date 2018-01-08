@@ -80,7 +80,13 @@ class ScoreController extends Controller
      */
     public function update(Request $request, $room_id, $class_date_id)
     {
-        ClassDate::find($class_date_id)->update(['active' => true]);
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_score) {
+            return redirect()->route('scores.students', [$room_id, $class_date_id])->with('danger', 'Ops! Este lançamento já foi finalizado!');
+        }
+
+        $class_date->update(['active' => true]);
 
         $registrations = collect($request->registration_id);
 
@@ -121,6 +127,5 @@ class ScoreController extends Controller
         }
 
         return redirect()->route('scores.students', [$room_id, $class_date_id])->with('success', 'Operação realizada com sucesso!');
-
     }
 }

@@ -22,7 +22,7 @@ class ClassDate extends Model
      * @var array
      */
     protected $fillable = [
-        'room_id', 'class_date', 'avaliation', 'active',
+        'room_id', 'class_date', 'avaliation', 'active', 'check_frequency', 'check_score',
     ];
 
     /**

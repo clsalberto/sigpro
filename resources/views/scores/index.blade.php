@@ -53,9 +53,15 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('scores.students', [$room->id, $date->id]) }}" class="btn btn-default btn-xs">
-                                        <i class="fa fa-check"></i> Lançar
-                                    </a>
+                                    @if ($room->has_formula)
+                                        <a href="{{ route('scores.students', [$room->id, $date->id]) }}" class="btn btn-default btn-xs">
+                                            <i class="fa fa-check"></i> Lançar
+                                        </a>
+                                    @else
+                                        <a href="{{ route('formula', $room->id) }}" class="btn btn-default btn-xs">
+                                            <i class="fa fa-check"></i> Lançar
+                                        </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

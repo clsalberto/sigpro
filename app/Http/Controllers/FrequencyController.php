@@ -79,9 +79,18 @@ class FrequencyController extends Controller
     public function enableScore($room_id, $class_date_id)
     {
         $room = Room::find($room_id);
-        $room->classDates()->find($class_date_id)->update(['avaliation' => true]);
+        $class_date = $room->classDates()->find($class_date_id)->update(['avaliation' => true]);
 
-        return redirect()->route('scores', $room_id)->with('info', 'Informada nova data de avaliação!');
+        $registrations = Registration::where('room_id', $room->id)->get();
+
+        foreach ($registrations as $registration)
+        {
+            $registration->scores()->updateOrCreate([
+                'class_date_id' => $class_date_id,
+            ]);
+        }
+
+        return redirect()->route('scores', $room->id)->with('info', 'Informada nova data de avaliação!');
     }
 
     /**
@@ -100,6 +109,36 @@ class FrequencyController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $room_id
+     * @param  int  $class_date_id
+     * @return \Illuminate\Http\Response
+     */
+    public function checkFrequency($room_id, $class_date_id)
+    {
+        $room = Room::find($room_id);
+        $room->classDates()->find($class_date_id)->update(['check_frequency' => true]);
+
+        return redirect()->route('frequencies.students.print', [$room_id, $class_date_id]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $room_id
+     * @param  int  $class_date_id
+     * @return \Illuminate\Http\Response
+     */
+    public function checkScore($room_id, $class_date_id)
+    {
+        $room = Room::find($room_id);
+        $room->classDates()->find($class_date_id)->update(['check_score' => true]);
+
+        return redirect()->route('scores.students.print', [$room_id, $class_date_id]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  int  $class_date_id
@@ -108,7 +147,13 @@ class FrequencyController extends Controller
      */
     public function active_a($class_date_id, $registration_id)
     {
-        ClassDate::find($class_date_id)->update(['active' => true]);
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
 
         $registration = Registration::find($registration_id);
         $workload = $registration->workload + 1;
@@ -126,7 +171,14 @@ class FrequencyController extends Controller
      */
     public function inactive_a($class_date_id, $registration_id)
     {
-        ClassDate::find($class_date_id)->update(['active' => true]);
+
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
 
         $registration = Registration::find($registration_id);
         $workload = $registration->workload - 1;
@@ -146,7 +198,13 @@ class FrequencyController extends Controller
      */
     public function active_b($class_date_id, $registration_id)
     {
-        ClassDate::find($class_date_id)->update(['active' => true]);
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
 
         $registration = Registration::find($registration_id);
         $workload = $registration->workload + 1;
@@ -164,7 +222,13 @@ class FrequencyController extends Controller
      */
     public function inactive_b($class_date_id, $registration_id)
     {
-        ClassDate::find($class_date_id)->update(['active' => true]);
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
 
         $registration = Registration::find($registration_id);
         $workload = $registration->workload - 1;
@@ -184,7 +248,13 @@ class FrequencyController extends Controller
      */
     public function active_c($class_date_id, $registration_id)
     {
-        ClassDate::find($class_date_id)->update(['active' => true]);
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
 
         $registration = Registration::find($registration_id);
         $workload = $registration->workload + 1;
@@ -202,7 +272,13 @@ class FrequencyController extends Controller
      */
     public function inactive_c($class_date_id, $registration_id)
     {
-        ClassDate::find($class_date_id)->update(['active' => true]);
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
 
         $registration = Registration::find($registration_id);
         $workload = $registration->workload - 1;
@@ -222,7 +298,13 @@ class FrequencyController extends Controller
      */
     public function active_d($class_date_id, $registration_id)
     {
-        ClassDate::find($class_date_id)->update(['active' => true]);
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
 
         $registration = Registration::find($registration_id);
         $workload = $registration->workload + 1;
@@ -240,7 +322,13 @@ class FrequencyController extends Controller
      */
     public function inactive_d($class_date_id, $registration_id)
     {
-        ClassDate::find($class_date_id)->update(['active' => true]);
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
 
         $registration = Registration::find($registration_id);
         $workload = $registration->workload - 1;

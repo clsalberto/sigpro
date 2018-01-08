@@ -56,15 +56,18 @@
 			<div class="col-xs-12 table-responsive">
 				<table class="table table-striped">
 					<thead>
-					<tr>
-						<th class="col-md-1">ID</th>
-						<th class="col-md-4">Nome</th>
-						<th class="col-md-3">CPF</th>
-						<th class="col-md-1">Notas</th>
-						<th class="col-md-1">Notas</th>
-						<th class="col-md-1">Notas</th>
-						<th class="col-md-1">Notas</th>
-					</tr>
+						<tr>
+							<th class="col-md-1">ID</th>
+							<th class="col-md-4">Nome</th>
+							<th class="col-lg-2">CPF</th>
+							<th class="col-md-1">AP1</th>
+							@if ($registrations->first()->score($class_date->id, $registrations->first()->id)->has_form)
+								<th class="col-md-1">AP2</th>
+							@endif
+							<th class="col-md-1">AF</th>
+							<th class="col-md-1">MD</th>
+							<th class="col-md-1">RC</th>
+						</tr>
 					</thead>
 					<tbody>
 					@foreach ($registrations as $registration)
@@ -73,9 +76,21 @@
 							<td>{{ $registration->student->full_name }}</td>
 							<td>{{ $registration->student->cpf }}</td>
 							<td>{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_a) }}</td>
-							<td>{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_b) }}</td>
+							@if ($registration->score($class_date->id, $registration->id)->has_form)
+								<td>{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_b) }}</td>
+							@endif
 							<td>{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_c) }}</td>
-							<td>{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_d) }}</td>
+							<td>
+								<strong>{{ $registration->score($class_date->id, $registration->id)->average }}</strong>
+								@if ($class_date->check_score)
+									{!! ctoi($registration->score($class_date->id, $registration->id)->average) < ctoi(config('template.institution.media')) ? " <b class='label label-danger'>R</b>" : " <b class='label label-success'>A</b>" !!}
+								@endif
+							</td>
+							<td>
+								@if (ctoi($registration->score($class_date->id, $registration->id)->average) < ctoi(config('template.institution.media')) || ctoi($registration->score($class_date->id, $registration->id)->punctuation_d) > 0)
+									{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_d) }}
+								@endif
+							</td>
 						</tr>
 					@endforeach
 					</tbody>

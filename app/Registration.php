@@ -69,6 +69,11 @@ class Registration extends Model
         return $this->hasMany(Score::class);
     }
 
+    /**
+     * @param $class_date_id
+     * @param $registration_id
+     * @return Model|null|static
+     */
     public function score($class_date_id, $registration_id)
     {
         return $this->scores()->where('class_date_id', $class_date_id)

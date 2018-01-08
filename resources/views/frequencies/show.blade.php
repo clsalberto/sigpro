@@ -68,7 +68,11 @@
 
 		<!-- /.box-footer -->
 		<div class="box-footer">
-			<a href="{{ route('frequencies.students.print', [$room->id, $class_date->id]) }}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-check-square-o"></i> Comprovante</a>
+            @if ($class_date->check_frequency)
+                <a href="{{ route('frequencies.students.print', [$room->id, $class_date->id]) }}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-bar-chart"></i> Comprovante</a>
+            @else
+                <a href="{{ route('check.frequency', [$room->id, $class_date->id]) }}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-bar-chart"></i> Encerar lançamento</a>
+            @endif
 		</div>
 		<!-- /.box-footer -->
 
