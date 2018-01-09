@@ -21,6 +21,7 @@
         <div class="box-header">
             <h3 class="box-title">{{ $room->course->name }} <br>
             <small>{{ $room->module->description }}</small></h3>
+            <a href="{{ route('formula', $room->id) }}" class="btn btn-default btn-xs pull-right"><i class="fa fa-edit"></i> Alterar fórmula</a>
         </div>
         <!-- /.box-header -->
 
@@ -69,7 +70,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="4">{{ 'Registros: ' . count($dates) }}</th>
+                        <th colspan="4">
+                            {{ 'Registros: ' . count($dates) }}
+                        </th>
                     </tr>
                 </tfoot>
             </table>

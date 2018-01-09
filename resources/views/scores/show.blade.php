@@ -67,7 +67,7 @@
 							@if (ctoi($registration->score($class_date->id, $registration->id)->average) < ctoi(config('template.institution.media')) || ctoi($registration->score($class_date->id, $registration->id)->punctuation_d) > 0)
 								<input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_d) }}" data-inputmask="'mask': ['9[9].9']" data-mask>
 							@else
-								<input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_d) }}" data-inputmask="'mask': ['9[9].9']" data-mask disabled>
+								<input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score($class_date->id, $registration->id)->punctuation_d) }}" data-inputmask="'mask': ['9[9].9']" data-mask readonly>
 							@endif
 						</td>
 					</tr>
