@@ -57,7 +57,8 @@
                     <hr>
                     <strong><i class="fa fa-intersex margin-r-5"></i> Gênero</strong>
                     <p class="text-muted">
-                        {{ $user->profile->gender == 'M' ? 'Masculino' : 'Feminino' }}
+                        {{ $user->profile->gender == 'M' ? 'Masculino' : '' }}
+                        {{ $user->profile->gender == 'F' ? 'Feminino' : '' }}
                     </p>
                     <hr>
                     <strong><i class="fa fa-map-o margin-r-5"></i> Endereço</strong>
