@@ -58,13 +58,15 @@ class Score extends Model
         $formula = $this->registration->room->formula_id;
         if ($formula == 2) {
             if ($this->punctuation_d > 0) {
-                return ctof(intval(($this->punctuation_c + $this->punctuation_d) / 2));
+                $average = intval(($this->punctuation_a + $this->punctuation_c) / 2);
+                return ctof(intval(($average + $this->punctuation_d) / 2));
             } else {
                 return ctof(intval(($this->punctuation_a + $this->punctuation_c) / 2));
             }
         } elseif ($formula == 3) {
             if ($this->punctuation_d > 0) {
-                return ctof(intval(($this->punctuation_c + $this->punctuation_d) / 2));
+                $average = intval(($this->punctuation_a + $this->punctuation_b + $this->punctuation_c) / 3);
+                return ctof(intval(($average + $this->punctuation_d) / 2));
             } else {
                 return ctof(intval(($this->punctuation_a + $this->punctuation_b + $this->punctuation_c) / 3));
             }
