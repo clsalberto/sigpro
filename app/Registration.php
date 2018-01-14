@@ -70,14 +70,12 @@ class Registration extends Model
     }
 
     /**
-     * @param $class_date_id
      * @param $registration_id
      * @return Model|null|static
      */
-    public function score($class_date_id, $registration_id)
+    public function score($registration_id)
     {
-        return $this->scores()->where('class_date_id', $class_date_id)
-            ->where('registration_id', $registration_id)
+        return $this->scores()->where('registration_id', $registration_id)
             ->first();
     }
 

@@ -10,7 +10,7 @@ return [
 	    'name' => 'PRONATEC - UECE',
 	    'address' => 'Rua Teste, 345',
 	    'cnpj' => '00.000.000/0000-22',
-        'media' => '7.0',
+        'media' => '6.0',
     ],
     'version' => '1.2.2',
 ];

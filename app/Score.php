@@ -25,18 +25,8 @@ class Score extends Model
      * @var array
      */
     protected $fillable = [
-        'class_date_id', 'registration_id', 'punctuation_a', 'punctuation_b', 'punctuation_c', 'punctuation_d',
+        'registration_id', 'punctuation_a', 'punctuation_b', 'punctuation_c', 'punctuation_d',
     ];
-
-    /**
-     * Relationship with class date.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function classDate()
-    {
-        return $this->belongsTo(ClassDate::class);
-    }
 
     /**
      * Relationship with registration.

@@ -5,8 +5,6 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-
-
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -51,11 +49,8 @@ Route::get('/room/{id}/frequencies', 'FrequencyController@index')->name('frequen
 Route::get('/room/{room_id}/{class_date_id}/frequencies', 'FrequencyController@show')->name('frequencies.students');
 Route::get('/room/{room_id}/{class_date_id}/frequencies/print', 'FrequencyController@print')->name('frequencies.students.print');
 
-Route::get('/room/{room_id}/{class_date_id}/enable', 'FrequencyController@enableScore')->name('enable.score');
-Route::get('/room/{room_id}/{class_date_id}/disable', 'FrequencyController@disableScore')->name('disable.score');
-
 Route::get('/room/{room_id}/{class_date_id}/frequency/check', 'FrequencyController@checkFrequency')->name('check.frequency');
-Route::get('/room/{room_id}/{class_date_id}/score/check', 'FrequencyController@checkScore')->name('check.score');
+Route::get('/room/{id}/score/check', 'FrequencyController@checkScore')->name('check.score');
 
 Route::post('/frequency/{class_date_id}/{registration_id}/active_a', 'FrequencyController@active_a');
 Route::post('/frequency/{class_date_id}/{registration_id}/inactive_a', 'FrequencyController@inactive_a');
@@ -72,10 +67,9 @@ Route::post('/frequency/{class_date_id}/{registration_id}/inactive_d', 'Frequenc
 /*
  * Routes scores.
  */
-Route::get('/room/{id}/scores', 'ScoreController@index')->name('scores');
-Route::get('/room/{room_id}/{class_date_id}/scores', 'ScoreController@show')->name('scores.students');
-Route::post('/room/{room_id}/{class_date_id}/scores', 'ScoreController@update')->name('scores.students.update');
-Route::get('/room/{room_id}/{class_date_id}/scores/print', 'ScoreController@print')->name('scores.students.print');
+Route::get('/room/{id}/scores', 'ScoreController@show')->name('scores.students');
+Route::post('/room/{id}/scores', 'ScoreController@update')->name('scores.students.update');
+Route::get('/room/{id}/scores/print', 'ScoreController@print')->name('scores.students.print');
 
 /*
  * Routes programs content.

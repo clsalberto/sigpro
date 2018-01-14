@@ -98,7 +98,7 @@ class User extends Authenticatable
     /**
      * Get the user's is admin.
      *
-     * @return string
+     * @return boolean
      */
     public function getIsAdminAttribute()
     {

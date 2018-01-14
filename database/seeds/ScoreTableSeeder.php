@@ -18,13 +18,7 @@ class ScoreTableSeeder extends Seeder
 
         foreach ($registrations as $registration)
         {
-            $classDates = ClassDate::where('avaliation', true)->get();
-
-            foreach ($classDates as $classDate) {
-                $registration->scores()->create([
-                    'class_date_id' => $classDate->id,
-                ]);
-            }
+            $registration->scores()->create();
         }
     }
 }

@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\ClassDate;
 use App\Score;
 use Illuminate\Http\Request;
-
 use App\Room;
 
 class ScoreController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -21,72 +17,54 @@ class ScoreController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
+     *
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function show($id)
     {
-        $room = Room::find($id);
+        $room = Room::findOrFail($id);
+        $registrations = collect($room->registrations()->with('student')->get())->sortBy('student.name');
+        $registrations->values()->all();
 
-        $dates = $room->classDates()
-            ->where('avaliation', true)
-            ->orderBy('class_date')->get();
-
-        return view('scores.index', compact(['room', 'dates']));
+        return view('scores.show', compact(['room', 'registrations']));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $room_id
-     * @param  int  $class_date_id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($room_id, $class_date_id)
-    {
-        $room = Room::findOrFail($room_id);
-        $registrations = collect($room->registrations()->with('student')->get())->sortBy('student.name');
-        $registrations->values()->all();
-        $class_date = $room->classDates()->find($class_date_id);
-
-        return view('scores.show', compact(['room', 'registrations', 'class_date']));
-    }
-
-    /**
-     * Display the specified resource.
+     * @param int $id
      *
-     * @param  int  $room_id
-     * @param  int  $class_date_id
      * @return \Illuminate\Http\Response
      */
-    public function print($room_id, $class_date_id)
+    public function print($id)
     {
-        $room = Room::findOrFail($room_id);
+        $room = Room::findOrFail($id);
         $registrations = collect($room->registrations()->with('student')->get())->sortBy('student.name');
         $registrations->values()->all();
-        $class_date = $room->classDates()->find($class_date_id);
 
-        return view('scores.print', compact(['room', 'registrations', 'class_date']));
+        return view('scores.print', compact(['room', 'registrations']));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param $room_id
-     * @param $class_date_id
-     * @param  \Illuminate\Http\Request $request
+     * @param $id
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $room_id, $class_date_id)
+    public function update(Request $request, $id)
     {
-        $class_date = ClassDate::find($class_date_id);
+        $room = Room::find($id);
 
-        if ($class_date->check_score) {
-            return redirect()->route('scores.students', [$room_id, $class_date_id])->with('danger', 'Ops! Este lançamento já foi finalizado!');
+        if ($room->check_score) {
+            return redirect()->route('scores.students', $id)->with('danger', 'Ops! Este lançamento já foi finalizado!');
         }
 
-        $class_date->update(['active' => true]);
+        $room->update(['active' => true]);
 
         $registrations = collect($request->registration_id);
 
@@ -94,7 +72,6 @@ class ScoreController extends Controller
             $collection_a = $registrations->combine($request->punctuation_a);
             foreach ($collection_a as $registration_id => $punctuation_a) {
                 Score::where('registration_id', $registration_id)
-                    ->where('class_date_id', $class_date_id)
                     ->update(['punctuation_a' => ctoi($punctuation_a)]);
             }
         }
@@ -103,7 +80,6 @@ class ScoreController extends Controller
             $collection_b = $registrations->combine($request->punctuation_b);
             foreach ($collection_b as $registration_id => $punctuation_b) {
                 Score::where('registration_id', $registration_id)
-                    ->where('class_date_id', $class_date_id)
                     ->update(['punctuation_b' => ctoi($punctuation_b)]);
             }
         }
@@ -112,7 +88,6 @@ class ScoreController extends Controller
             $collection_c = $registrations->combine($request->punctuation_c);
             foreach ($collection_c as $registration_id => $punctuation_c) {
                 Score::where('registration_id', $registration_id)
-                    ->where('class_date_id', $class_date_id)
                     ->update(['punctuation_c' => ctoi($punctuation_c)]);
             }
         }
@@ -121,11 +96,10 @@ class ScoreController extends Controller
             $collection_d = $registrations->combine($request->punctuation_d);
             foreach ($collection_d as $registration_id => $punctuation_d) {
                 Score::where('registration_id', $registration_id)
-                    ->where('class_date_id', $class_date_id)
                     ->update(['punctuation_d' => ctoi($punctuation_d)]);
             }
         }
 
-        return redirect()->route('scores.students', [$room_id, $class_date_id])->with('success', 'Operação realizada com sucesso!');
+        return redirect()->route('scores.students', $id)->with('success', 'Operação realizada com sucesso!');
     }
 }

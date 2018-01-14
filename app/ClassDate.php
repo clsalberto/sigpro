@@ -22,7 +22,7 @@ class ClassDate extends Model
      * @var array
      */
     protected $fillable = [
-        'room_id', 'class_date', 'avaliation', 'active', 'check_frequency', 'check_score',
+        'room_id', 'class_date', 'avaliation', 'active', 'check_frequency',
     ];
 
     /**
@@ -75,11 +75,12 @@ class ClassDate extends Model
     /**
      * Get the class date has content.
      *
-     * @return boolean
+     * @return bool
      */
     public function getHasContentAttribute()
     {
         $content = collect($this->programContent);
+
         return $content->count() > 0 ? true : false;
     }
 }

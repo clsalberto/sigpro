@@ -23,7 +23,7 @@ class Room extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'course_id', 'module_id', 'pact_id', 'city_id', 'shift', 'formula_id', 'inicial_date', 'final_date',
+        'id', 'course_id', 'module_id', 'pact_id', 'city_id', 'shift', 'formula_id', 'inicial_date', 'final_date', 'check_score',
     ];
 
     /**
@@ -109,11 +109,12 @@ class Room extends Model
     /**
      * Get the class date has formula.
      *
-     * @return boolean
+     * @return bool
      */
     public function getHasFormulaAttribute()
     {
         $formula = $this->formula;
+
         return $formula->id > 1 ? true : false;
     }
 }

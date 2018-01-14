@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Room;
 use App\Frequency;
 use App\ClassDate;
@@ -12,8 +11,6 @@ class FrequencyController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -38,8 +35,9 @@ class FrequencyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $room_id
-     * @param  int  $class_date_id
+     * @param int $room_id
+     * @param int $class_date_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($room_id, $class_date_id)
@@ -55,8 +53,9 @@ class FrequencyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $room_id
-     * @param  int  $class_date_id
+     * @param int $room_id
+     * @param int $class_date_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function print($room_id, $class_date_id)
@@ -72,47 +71,9 @@ class FrequencyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $room_id
-     * @param  int  $class_date_id
-     * @return \Illuminate\Http\Response
-     */
-    public function enableScore($room_id, $class_date_id)
-    {
-        $room = Room::find($room_id);
-        $class_date = $room->classDates()->find($class_date_id)->update(['avaliation' => true]);
-
-        $registrations = Registration::where('room_id', $room->id)->get();
-
-        foreach ($registrations as $registration)
-        {
-            $registration->scores()->updateOrCreate([
-                'class_date_id' => $class_date_id,
-            ]);
-        }
-
-        return redirect()->route('scores', $room->id)->with('info', 'Informada nova data de avaliação!');
-    }
-
-    /**
-     * Display the specified resource.
+     * @param int $room_id
+     * @param int $class_date_id
      *
-     * @param  int  $room_id
-     * @param  int  $class_date_id
-     * @return \Illuminate\Http\Response
-     */
-    public function disableScore($room_id, $class_date_id)
-    {
-        $room = Room::find($room_id);
-        $room->classDates()->find($class_date_id)->update(['avaliation' => false]);
-
-        return redirect()->route('scores', $room_id)->with('info', 'Cancelada data de avaliação!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $room_id
-     * @param  int  $class_date_id
      * @return \Illuminate\Http\Response
      */
     public function checkFrequency($room_id, $class_date_id)
@@ -126,23 +87,23 @@ class FrequencyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $room_id
-     * @param  int  $class_date_id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function checkScore($room_id, $class_date_id)
+    public function checkScore($id)
     {
-        $room = Room::find($room_id);
-        $room->classDates()->find($class_date_id)->update(['check_score' => true]);
+        $room = Room::find($id)->update(['check_score' => true]);
 
-        return redirect()->route('scores.students.print', [$room_id, $class_date_id]);
+        return redirect()->route('scores.students.print', $id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $class_date_id
-     * @param  int  $registration_id
+     * @param int $class_date_id
+     * @param int $registration_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function active_a($class_date_id, $registration_id)
@@ -171,7 +132,6 @@ class FrequencyController extends Controller
      */
     public function inactive_a($class_date_id, $registration_id)
     {
-
         $class_date = ClassDate::find($class_date_id);
 
         if ($class_date->check_frequency) {
@@ -192,8 +152,9 @@ class FrequencyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $class_date_id
-     * @param  int  $registration_id
+     * @param int $class_date_id
+     * @param int $registration_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function active_b($class_date_id, $registration_id)
@@ -242,8 +203,9 @@ class FrequencyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $class_date_id
-     * @param  int  $registration_id
+     * @param int $class_date_id
+     * @param int $registration_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function active_c($class_date_id, $registration_id)
@@ -292,8 +254,9 @@ class FrequencyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $class_date_id
-     * @param  int  $registration_id
+     * @param int $class_date_id
+     * @param int $registration_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function active_d($class_date_id, $registration_id)
@@ -333,7 +296,7 @@ class FrequencyController extends Controller
         $registration = Registration::find($registration_id);
         $workload = $registration->workload - 1;
         $registration->update(['workload' => $workload]);
-        
+
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
             ->update(['presence_d' => false]);
