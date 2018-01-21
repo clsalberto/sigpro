@@ -37,7 +37,7 @@
 					<th class="col-md-1">ID</th>
 					<th class="col-md-5">Nome</th>
 					<th class="col-md-2">CPF</th>
-					<th class="col-md-4">Frequência</th>
+					<th class="col-md-4" colspan="4">Frequência</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -46,10 +46,16 @@
 						<td>{{ $registration->student->id }}</td>
 						<td>{{ $registration->student->full_name }}</td>
 						<td>{{ $registration->student->cpf }}</td>
-						<td>
+						<td class="col-md-1">
 							<label>A <input name="presence_a" type="checkbox" value="{{ $registration->id }}" {{ $registration->frequency($class_date->id, $registration->id)->presence_a ? 'checked' : '' }}></label>
+                        </td>
+						<td class="col-md-1">
 							<label>B <input name="presence_b" type="checkbox" value="{{ $registration->id }}" {{ $registration->frequency($class_date->id, $registration->id)->presence_b ? 'checked' : '' }}></label>
+                        </td>
+						<td class="col-md-1">
 							<label>C <input name="presence_c" type="checkbox" value="{{ $registration->id }}" {{ $registration->frequency($class_date->id, $registration->id)->presence_c ? 'checked' : '' }}></label>
+                        </td>
+						<td class="col-md-1">
                             @if ($room->shift == 'D')
 							    <label>D <input name="presence_d" type="checkbox" value="{{ $registration->id }}" {{ $registration->frequency($class_date->id, $registration->id)->presence_d ? 'checked' : '' }}></label>
                             @endif

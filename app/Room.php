@@ -117,4 +117,20 @@ class Room extends Model
 
         return $formula->id > 1 ? true : false;
     }
+
+    /**
+     * Get the scores has closure.
+     *
+     * @return bool
+     */
+    public function getHasClosureAttribute()
+    {
+        foreach ($this->registrations as $registration) {
+            if (ctoi($registration->score->average) < ctoi(config('template.institution.media')) && $registration->score->punctuation_d == '')
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

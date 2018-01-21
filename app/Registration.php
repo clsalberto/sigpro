@@ -62,21 +62,10 @@ class Registration extends Model
     /**
      * Relationship with scores.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function scores()
+    public function score()
     {
-        return $this->hasMany(Score::class);
+        return $this->hasOne(Score::class);
     }
-
-    /**
-     * @param $registration_id
-     * @return Model|null|static
-     */
-    public function score($registration_id)
-    {
-        return $this->scores()->where('registration_id', $registration_id)
-            ->first();
-    }
-
 }

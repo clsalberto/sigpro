@@ -27,8 +27,8 @@
 
         <!-- /.box-body -->
         <div class="box-body">
-            <p class="box-comment text-justify">
-                {{ $class_date->programContent->content }}
+            <p class="box-c{{ $class_date->programContent->content }}omment text-justify">
+                {!! $class_date->programContent->content !!}
             </p>
         </div>
         <!-- /.box-body -->
@@ -42,4 +42,3 @@
     </div>
 
 @endsection
-

@@ -58,12 +58,12 @@
 						<th class="col-md-4">Nome</th>
 						<th class="col-lg-2">CPF</th>
 						<th class="col-md-1">AP1</th>
-						@if ($registrations->first()->score($registrations->first()->id)->has_form)
+						@if ($registrations->first()->score->has_form)
 						<th class="col-md-1">AP2</th>
 						@endif
 						<th class="col-md-1">AF</th>
-						<th class="col-md-1">MD</th>
 						<th class="col-md-1">RC</th>
+						<th class="col-md-1">MD</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -72,21 +72,22 @@
 						<td>{{ $registration->student->id }}</td>
 						<td>{{ $registration->student->full_name }}</td>
 						<td>{{ $registration->student->cpf }}</td>
-						<td>{{ ctof($registration->score($registration->id)->punctuation_a) }}</td>
-						@if ($registration->score($registration->id)->has_form)
-						<td>{{ ctof($registration->score($registration->id)->punctuation_b) }}</td>
+						<td>{{ ctof($registration->score->punctuation_a) }}</td>
+						@if ($registration->score->has_form)
+						<td>{{ ctof($registration->score->punctuation_b) }}</td>
 						@endif
-						<td>{{ ctof($registration->score($registration->id)->punctuation_c) }}</td>
+						<td>{{ ctof($registration->score->punctuation_c) }}</td>
+
 						<td>
-							<strong>{{ $registration->score($registration->id)->average }}</strong>
-							@if ($room->check_score) {!! ctoi($registration->score($registration->id)->average)
+							@if (ctoi($registration->score->average)
+							< ctoi(config( 'template.institution.media')) || ctoi($registration->score->punctuation_d) > 0) {{ ctof($registration->score->punctuation_d) }}
+								@endif
+						</td>
+						<td>
+							<strong>{{ $registration->score->average }}</strong>
+							@if ($room->check_score) {!! ctoi($registration->score->average)
 							< ctoi(config(
-							 'template.institution.media')) ? " <b class='label label-danger'>R</b>" : " <b class='label label-success'>A</b>" !!} @endif </td>
-								<td>
-									@if (ctoi($registration->score($registration->id)->average)
-									< ctoi(config( 'template.institution.media')) || ctoi($registration->score($registration->id)->punctuation_d) > 0) {{ ctof($registration->score($registration->id)->punctuation_d) }}
-										@endif
-								</td>
+							 'template.institution.media')) ? " <b class='label label-danger'>REP</b>" : " <b class='label label-success'>APR</b>" !!} @endif </td>
 					</tr>
 					@endforeach
 				</tbody>

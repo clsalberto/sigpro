@@ -15,10 +15,10 @@ class AddPunctuationsToScoresTable extends Migration
     {
         Schema::table('scores', function (Blueprint $table) {
             $table->dropColumn('punctuation');
-            $table->integer('punctuation_a')->default(0);
-            $table->integer('punctuation_b')->default(0);
-            $table->integer('punctuation_c')->default(0);
-            $table->integer('punctuation_d')->default(0);
+            $table->integer('punctuation_a')->nullable()->default(null);
+            $table->integer('punctuation_b')->nullable()->default(null);
+            $table->integer('punctuation_c')->nullable()->default(null);
+            $table->integer('punctuation_d')->nullable()->default(null);
         });
     }
 

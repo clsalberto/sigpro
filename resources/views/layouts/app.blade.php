@@ -51,5 +51,9 @@
 
     @yield('scripts')
 
+    @if(config('template.skin.message.type') == 'toastr')
+        @include('partials.message.toastr')
+    @endif
+
 </body>
 </html>

@@ -18,7 +18,7 @@ class ScoreTableSeeder extends Seeder
 
         foreach ($registrations as $registration)
         {
-            $registration->scores()->create();
+            $registration->score()->create();
         }
     }
 }

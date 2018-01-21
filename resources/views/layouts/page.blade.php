@@ -90,8 +90,11 @@
 
             <!-- Main content -->
             <section class="content container-fluid">
-            
-                @include('partials.messages.message')
+
+                @if(config('template.skin.message.type') == 'alert')
+                    @include('partials.message.alert')
+                @endif
+                
                 @yield('content')
 
             </section>

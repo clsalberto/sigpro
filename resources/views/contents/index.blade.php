@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+@stop
+
 @section('title', 'Conteúdos')
 @section('content_title')
     <h1>
@@ -36,7 +40,7 @@
 
             <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
                 <label for="content">{{ trans('template.fields.content') }}</label>
-                <textarea name="content" class="form-control" cols="30" rows="10" placeholder="{{ trans('template.fields.content') }}">{{ $class_date->has_content ? $class_date->programContent->content : old('content') }}</textarea>
+                <textarea name="content" class="form-control textarea" cols="30" rows="10" placeholder="{{ trans('template.fields.content') }}">{{ $class_date->has_content ? $class_date->programContent->content : old('content') }}</textarea>
                 @if ($errors->has('content'))
                     <span class="help-block">
                         <strong>{{ $errors->first('content') }}</strong>
@@ -60,3 +64,26 @@
 
 @endsection
 
+@section('scripts')
+    <script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.pt-BR.js') }}"></script>
+    <script>
+        $(function () {
+            $(".textarea").wysihtml5({
+                toolbar: {
+                    "font-styles": false,
+                    "emphasis": true,
+                    "lists": true,
+                    "html": false,
+                    "link": false,
+                    "image": false,
+                    "color": false,
+                    "blockquote": true,
+                    "size": "sm",
+                    "fa": true
+                },
+                locale: "pt-BR"
+            });
+        });
+    </script>
+@stop

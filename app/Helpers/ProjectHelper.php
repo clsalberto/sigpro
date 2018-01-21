@@ -29,23 +29,25 @@ if (!function_exists("proper_case")) {
 if (!function_exists("ctoi")) {
     function ctoi($number)
     {
-        if ($number == '1._') {
+        if ($number == "") {
+            return null;
+        } elseif ($number == '1._' || $number == '1_._') {
             $number = 1.0;
-        } elseif ($number == '2._') {
+        } elseif ($number == '2._' || $number == '2_._') {
             $number = 2.0;
-        } elseif ($number == '3._') {
+        } elseif ($number == '3._' || $number == '3_._') {
             $number = 3.0;
-        } elseif ($number == '4._') {
+        } elseif ($number == '4._' || $number == '4_._') {
             $number = 4.0;
-        } elseif ($number == '5._') {
+        } elseif ($number == '5._' || $number == '5_._') {
             $number = 5.0;
-        } elseif ($number == '6._') {
+        } elseif ($number == '6._' || $number == '6_._') {
             $number = 6.0;
-        } elseif ($number == '7._') {
+        } elseif ($number == '7._' || $number == '7_._') {
             $number = 7.0;
-        } elseif ($number == '8._') {
+        } elseif ($number == '8._' || $number == '8_._') {
             $number = 8.0;
-        } elseif ($number == '9._') {
+        } elseif ($number == '9._' || $number == '9_._') {
             $number = 9.0;
         } elseif ($number == '10._') {
             $number = 10.0;
@@ -56,8 +58,10 @@ if (!function_exists("ctoi")) {
 
 if (!function_exists("ctof")) {
     function ctof($number)
-    {   
-        if ($number <= 0) {
+    {
+        if (is_null($number)) {
+            return "";
+        } elseif ($number <= 0) {
             return "0.0";
         } elseif ($number == 10) {
             return "1.0";
@@ -81,7 +85,7 @@ if (!function_exists("ctof")) {
             return "10.0";
         } else {
             return (float) ($number / 10);
-        }        
+        }
     }
 }
 

@@ -48,6 +48,16 @@ class ScoreController extends Controller
         return view('scores.print', compact(['room', 'registrations']));
     }
 
+    private function has_equals(array $data)
+    {
+        foreach($data as $value) {
+            if ($value == "" || ctoi($value) <> ctoi($data[0])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -61,7 +71,21 @@ class ScoreController extends Controller
         $room = Room::find($id);
 
         if ($room->check_score) {
-            return redirect()->route('scores.students', $id)->with('danger', 'Ops! Este lançamento já foi finalizado!');
+            return redirect()->route('scores.students', $id)->with('error', 'Ops! Este lançamento já foi finalizado!');
+        }
+
+        if ($this->has_equals($request->punctuation_a)) {
+            return redirect()->route('scores.students', $id)->with('error', 'Ops! A coluna AP1 não pode ter todos os seus valores iguais!');
+        }
+
+        if ($room->formula->id > 2) {
+            if ($this->has_equals($request->punctuation_b)) {
+                return redirect()->route('scores.students', $id)->with('error', 'Ops! A coluna AP2 não pode ter todos os seus valores iguais!');
+            }
+        }
+
+        if ($this->has_equals($request->punctuation_c)) {
+            return redirect()->route('scores.students', $id)->with('error', 'Ops! A coluna AF não pode ter todos os seus valores iguais!');
         }
 
         $room->update(['active' => true]);

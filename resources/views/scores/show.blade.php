@@ -32,12 +32,12 @@
 						<th class="col-md-4 col-xs-3">Nome</th>
 						<th class="col-lg-2 hidden-md hidden-xs">CPF</th>
 						<th class="col-md-1 col-xs-2">AP1</th>
-						@if ($registrations->first()->score($registrations->first()->id)->has_form)
+						@if ($registrations->first()->score->has_form)
 						<th class="col-md-1 col-xs-2">AP2</th>
 						@endif
 						<th class="col-md-1 col-xs-2">AF</th>
-						<th class="col-md-1 col-xs-1">MD</th>
 						<th class="col-md-1 col-xs-2">RC</th>
+						<th class="col-md-1 col-xs-1">MD</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,32 +48,32 @@
 						<td class="col-lg-2 hidden-md hidden-xs">{{ $registration->student->cpf }}</td>
 						<td class="col-md-1 col-xs-2">
 							<input type="hidden" name="registration_id[]" value="{{ $registration->id }}">
-							<input type="text" class="form-control" name="punctuation_a[]" value="{{ ctof($registration->score($registration->id)->punctuation_a) }}"
+							<input type="text" class="form-control" name="punctuation_a[]" value="{{ ctof($registration->score->punctuation_a) }}"
 							 data-inputmask="'mask': ['9[9].9']" data-mask>
 						</td>
-						@if ($registration->score($registration->id)->has_form)
+						@if ($registration->score->has_form)
 						<td class="col-md-1 col-xs-2">
-							<input type="text" class="form-control" name="punctuation_b[]" value="{{ ctof($registration->score($registration->id)->punctuation_b) }}"
+							<input type="text" class="form-control" name="punctuation_b[]" value="{{ ctof($registration->score->punctuation_b) }}"
 							 data-inputmask="'mask': ['9[9].9']" data-mask>
 						</td>
 						@endif
 						<td class="col-md-1 col-xs-2">
-							<input type="text" class="form-control" name="punctuation_c[]" value="{{ ctof($registration->score($registration->id)->punctuation_c) }}"
+							<input type="text" class="form-control" name="punctuation_c[]" value="{{ ctof($registration->score->punctuation_c) }}"
 							 data-inputmask="'mask': ['9[9].9']" data-mask>
 						</td>
-						<td class="col-md-1 col-xs-1">
-							<strong>{{ $registration->score($registration->id)->average }}</strong>
-							@if ($room->check_score) {!! ctoi($registration->score($registration->id)->average)
-							< ctoi(config( 'template.institution.media')) ? " <b class='label label-danger'>R</b>" :
-							 " <b class='label label-success'>A</b>" !!} @endif </td>
-								<td class="col-md-1 col-xs-2">
-									@if (ctoi($registration->score($registration->id)->average)
-									< ctoi(config( 'template.institution.media')) || ctoi($registration->score($registration->id)->punctuation_d) > 0)
-										<input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score($registration->id)->punctuation_d) }}"
-										 data-inputmask="'mask': ['9[9].9']" data-mask> @else
-										<input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score($registration->id)->punctuation_d) }}"
-										 data-inputmask="'mask': ['9[9].9']" data-mask readonly> @endif
-								</td>
+							<td class="col-md-1 col-xs-2">
+								@if (ctoi($registration->score->average)
+								< ctoi(config( 'template.institution.media')) || ctoi($registration->score->punctuation_d) > 0)
+									<input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}"
+									 data-inputmask="'mask': ['9[9].9']" data-mask> @else
+									<input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}"
+									 data-inputmask="'mask': ['9[9].9']" data-mask readonly> @endif
+							</td>
+							<td class="col-md-1 col-xs-1">
+								<strong>{{ $registration->score->average }}</strong>
+								@if ($room->check_score) {!! ctoi($registration->score->average)
+								< ctoi(config( 'template.institution.media')) ? " <b class='label label-danger'>REP</b>" :
+								 " <b class='label label-success'>APR</b>" !!} @endif </td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -88,12 +88,14 @@
 
 		<!-- /.box-footer -->
 		<div class="box-footer">
-			@if ($room->check_score)
-			<a href="{{ route('scores.students.print', $room->id) }}" target="_blank" class="btn btn-default btn-xs">
-				<i class="fa fa-bar-chart"></i> Comprovante</a>
-			@else
-			<a href="{{ route('check.score', $room->id) }}" target="_blank" class="btn btn-default btn-xs">
-				<i class="fa fa-bar-chart"></i> Encerar lançamento</a>
+			@if ($room->has_closure)
+				@if ($room->check_score)
+				<a href="{{ route('scores.students.print', $room->id) }}" target="_blank" class="btn btn-default btn-xs">
+					<i class="fa fa-bar-chart"></i> Comprovante</a>
+				@else
+				<a href="{{ route('check.score', $room->id) }}" target="_blank" class="btn btn-default btn-xs">
+					<i class="fa fa-bar-chart"></i> Encerar lançamento</a>
+				@endif
 			@endif
 			<button type="submit" class="btn btn-success pull-right">{{ trans('template.buttons.register') }}</button>
 		</div>
@@ -103,13 +105,15 @@
 
 </div>
 
-@endsection @section('scripts')
+@endsection
+
+@section('scripts')
 <script src="{{ asset('plugins/input-mask/jquery.inputmask.js') }}"></script>
 <script src="{{ asset('plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
 <script>
 	$(function () {
-            $('[data-mask]').inputmask();
-        });
+        $('[data-mask]').inputmask();
+    });
 
 </script>
 @stop

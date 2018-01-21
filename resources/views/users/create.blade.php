@@ -83,6 +83,7 @@
 
 @section('scripts')
     <script src="{{ asset('plugins/select2/dist/js/select2.full.js') }}"></script>
+    <script src="{{ asset('plugins/select2/dist/js/i18n/pt-BR.js') }}"></script>
     <script>
         $(function () {
             $('.select2').select2();

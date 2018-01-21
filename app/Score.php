@@ -45,20 +45,26 @@ class Score extends Model
      */
     public function getAverageAttribute()
     {
-        $formula = $this->registration->room->formula_id;
+        $formula = (int) $this->registration->room->formula_id;
+
+        $punct_a = is_null($this->punctuation_a) ? 0 : $this->punctuation_a;
+        $punct_b = is_null($this->punctuation_b) ? 0 : $this->punctuation_b;
+        $punct_c = is_null($this->punctuation_c) ? 0 : $this->punctuation_c;
+        $punct_d = is_null($this->punctuation_d) ? 0 : $this->punctuation_d;
+
         if ($formula == 2) {
-            if ($this->punctuation_d > 0) {
-                $average = intval(($this->punctuation_a + $this->punctuation_c) / 2);
-                return ctof(intval(($average + $this->punctuation_d) / 2));
+            if ($punct_d > 0) {
+                $average = intval(($punct_a + $punct_c) / 2);
+                return ctof(intval(($average + $punct_d) / 2));
             } else {
-                return ctof(intval(($this->punctuation_a + $this->punctuation_c) / 2));
+                return ctof(intval(($punct_a + $punct_c) / 2));
             }
         } elseif ($formula == 3) {
-            if ($this->punctuation_d > 0) {
-                $average = intval(($this->punctuation_a + $this->punctuation_b + $this->punctuation_c) / 3);
-                return ctof(intval(($average + $this->punctuation_d) / 2));
+            if ($punct_d > 0) {
+                $average = intval(($punct_a + $punct_b + $punct_c) / 3);
+                return ctof(intval(($average + $punct_d) / 2));
             } else {
-                return ctof(intval(($this->punctuation_a + $this->punctuation_b + $this->punctuation_c) / 3));
+                return ctof(intval(($punct_a + $punct_b + $punct_c) / 3));
             }
         } else {
             return ctof('0');

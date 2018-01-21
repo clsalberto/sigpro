@@ -60,7 +60,7 @@
 						<th class="col-md-1">ID</th>
 						<th class="col-md-5">Nome</th>
 						<th class="col-md-2">CPF</th>
-						<th class="col-md-4">Frequência</th>
+						<th class="col-md-4" colspan="4">Frequência</th>
 	                </tr>
 	            </thead>
 	            <tbody>
@@ -69,10 +69,16 @@
 	                    <td>{{ $registration->student->id }}</td>
 	                    <td>{{ $registration->student->full_name }}</td>
 	                    <td>{{ $registration->student->cpf }}</td>
-	                    <td>
+	                    <td class="col-md-1">
 							<b>A</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_a ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+						</td>
+                        <td class="col-md-1">
 							<b>B</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_b ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+						</td>
+                        <td class="col-md-1">
 							<b>C</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_c ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+						</td>
+                        <td class="col-md-1">
 							@if ($room->shift == 'D')
 								<b>D</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_d ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
 							@endif
@@ -90,6 +96,15 @@
 	        <!-- /.col -->
 	      </div>
 	      <!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <b>Conteúdo de aula</b>
+                </div>
+                <div class="col-md-12">
+                    {!! $class_date->programContent->content !!}
+                </div>
+            </div>
 
 	      <div class="row">
 	        <!-- accepted payments column -->
@@ -110,7 +125,7 @@
 	        </div>
 	        <!-- /.col -->
 	      </div>
-	      <!-- /.row -->
+
 
 	    </section>
 
