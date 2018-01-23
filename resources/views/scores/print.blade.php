@@ -62,7 +62,7 @@
 						<th class="col-md-1">AP2</th>
 						@endif
 						<th class="col-md-1">AF</th>
-						<th class="col-md-1">RC</th>
+						<th class="col-md-1">RF</th>
 						<th class="col-md-1">MD</th>
 					</tr>
 				</thead>
@@ -105,8 +105,6 @@
 		<!-- /.col -->
 		<div class="col-xs-6">
 			<p class="lead">Assinatura do Professor</p>
-
-
 
 			<div class="row">
 				<hr class="col-md-4" style="border: 0.1pt solid #000;">

@@ -36,7 +36,7 @@
 						<th class="col-md-1 col-xs-2">AP2</th>
 						@endif
 						<th class="col-md-1 col-xs-2">AF</th>
-						<th class="col-md-1 col-xs-2">RC</th>
+						<th class="col-md-1 col-xs-2">RF</th>
 						<th class="col-md-1 col-xs-1">MD</th>
 					</tr>
 				</thead>
@@ -81,8 +81,23 @@
 					<tr>
 						<th colspan="3">{{ 'Registros: ' . count($registrations) }}</th>
 					</tr>
+
 				</tfoot>
 			</table>
+
+			<ul class="list-group col-md-8 col-xs-12">
+				<li class="list-group-item"><b>AP1 – Avaliação Parcial 1:</b> Atividade realizada em grupo (equipe de 3 a 5 membros) com pontuação de 0.0 a 10.0.
+					Ex.: Seminários, oficinas, trabalho de pesquisa, apresentações artísticas pertinente com a disciplina desenvolvida em sala de aula, CVD e outras.</li>
+				@if ($registrations->first()->score->has_form)
+				<li class="list-group-item"><b>AP2 – Avaliação Parcial 2:</b> Atividade de pesquisa individual com pontuação de 0.0 a 10.0.
+					Ex.: Elaboração de mapas conceituais sobre determinado assunto/tema, provas, entre outras.</li>
+				@endif
+				<li class="list-group-item"><b>AF – Avaliação Final:</b> Atividade individual com pontuação de 0.0 a 10.0.
+					Ex.: Prova escrita com questões dissertativas e objetivas, avaliação prática (no caso das disciplinas técnicas), etc.</li>
+				<li class="list-group-item"><b>RF – Recuperação Final</b></li>
+			</ul>
+
+
 		</div>
 		<!-- /.box-body -->
 
