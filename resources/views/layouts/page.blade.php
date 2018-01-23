@@ -67,13 +67,13 @@
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU</li>
-                    <li class="{{ set_active('home') }}"><a href="{{ route('home') }}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+                    <li class="{{ set_active('home') }}"><a href="{{ route('home') }}"><i class="fa fa-home text-green"></i> <span>Home</span></a></li>
 
                     @yield('sidebar')
 
                     <li class="header">PERFIL</li>
-                    <li class="{{ set_active('profile.edit') }}"><a href="{{ route('profile.edit') }}"><i class="fa fa-edit"></i> <span>{{ trans('template.links.edit_profile') }}</span></a></li>
-                    <li class="{{ set_active('password.edit') }}"><a href="{{ route('password.edit') }}"><i class="fa fa-lock"></i> <span>{{ trans('template.links.edit_password') }}</span></a></li>
+                    <li class="{{ set_active('profile.edit') }}"><a href="{{ route('profile.edit') }}"><i class="fa fa-edit text-green"></i> <span>{{ trans('template.links.edit_profile') }}</span></a></li>
+                    <li class="{{ set_active('password.edit') }}"><a href="{{ route('password.edit') }}"><i class="fa fa-lock text-green"></i> <span>{{ trans('template.links.edit_password') }}</span></a></li>
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
@@ -94,7 +94,7 @@
                 @if(config('template.skin.message.type') == 'alert')
                     @include('partials.message.alert')
                 @endif
-                
+
                 @yield('content')
 
             </section>
