@@ -39,13 +39,13 @@
 						<div class="attachment-text">
 							<div class="btn-group pull-right">
 								<a href="{{ route('frequencies', $room->id) }}" class="btn btn-default btn-xs">
-									<i class="fa fa-check-square-o margin-r-5"></i> Frequência</a>
+									<i class="fa fa-check-square-o margin-r-5 text-green"></i> Frequência</a>
 								@if($room->has_formula)
 								<a href="{{ route('scores.students', $room->id) }}" class="btn btn-default btn-xs">
-									<i class="fa fa-bar-chart margin-r-5"></i> Notas</a>
+									<i class="fa fa-bar-chart margin-r-5 text-green"></i> Notas</a>
 								@else
 								<a href="{{ route('formula', $room->id) }}" class="btn btn-default btn-xs">
-									<i class="fa fa-bar-chart margin-r-5"></i> Notas</a>
+									<i class="fa fa-bar-chart margin-r-5 text-green"></i> Notas</a>
 								@endif
 							</div>
 						</div>

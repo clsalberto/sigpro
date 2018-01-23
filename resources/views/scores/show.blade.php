@@ -18,7 +18,7 @@
 			</h3>
 			<div class="pull-right">
 				<a href="{{ route('formula', $room->id) }}" class="btn btn-default btn-xs">
-					<i class="fa fa-edit"></i> Alterar fórmula</a>
+					<i class="fa fa-edit text-green"></i> Alterar fórmula</a>
 			</div>
 		</div>
 		<!-- /.box-header -->
@@ -106,10 +106,10 @@
 			@if ($room->has_closure)
 				@if ($room->check_score)
 				<a href="{{ route('scores.students.print', $room->id) }}" target="_blank" class="btn btn-default btn-xs">
-					<i class="fa fa-bar-chart"></i> Comprovante</a>
+					<i class="fa fa-bar-chart text-green"></i> Comprovante</a>
 				@else
 				<a href="{{ route('check.score', $room->id) }}" target="_blank" class="btn btn-default btn-xs">
-					<i class="fa fa-bar-chart"></i> Encerar lançamento</a>
+					<i class="fa fa-bar-chart text-green"></i> Encerar lançamento</a>
 				@endif
 			@endif
 			<button type="submit" class="btn btn-success pull-right">{{ trans('template.buttons.register') }}</button>

@@ -36,12 +36,12 @@
 						<div class="btn-group">
 							@if($date->has_content)
 							<a href="{{ route('content.show', [$room->id, $date->id]) }}" class="btn btn-default btn-xs">
-								<i class="fa fa-cog"></i> Conteúdos </a>
+								<i class="fa fa-cog text-green"></i> Conteúdos </a>
 							<a href="{{ route('frequencies.students', [$room->id, $date->id]) }}" class="btn btn-default btn-xs">
-								<i class="fa fa-check"></i> Lançar Frequência </a>
+								<i class="fa fa-check text-green"></i> Lançar Frequência </a>
 							@else
 							<a href="{{ route('content', [$room->id, $date->id]) }}" class="btn btn-default btn-xs">
-								<i class="fa fa-cog"></i> Conteúdos </a>
+								<i class="fa fa-cog text-green"></i> Conteúdos </a>
 							@endif
 						</div>
 					</td>
