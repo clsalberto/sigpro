@@ -28,8 +28,9 @@
                 <thead>
                     <tr>
                         <th class="col-md-1">ID</th>
-                        <th class="col-md-9">Nome</th>
+                        <th class="col-md-8">Nome</th>
                         <th class="col-md-2">Tipo</th>
+                        <th class="col-md-1">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,15 +38,22 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->name . ' ' . $user->profile->surname }}</td>
+                                <td>{{ $user->full_name }}</td>
                                 <td>{{ $user->role->name }}</td>
+                                <td>
+                                    @if ($user->has_logged)
+                                        <small class="label pull-right bg-green">Logado</small>
+                                    @else
+                                        <small class="label pull-right bg-danger">Deslogado</small>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     @endif
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="3">{{ 'Registros: ' . count($users) }}</th>
+                        <th colspan="4">{{ 'Registros: ' . count($users) }}</th>
                     </tr>
                 </tfoot>
             </table>

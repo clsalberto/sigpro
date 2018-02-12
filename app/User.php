@@ -86,6 +86,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Relationship with loggeds
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function loggeds()
+    {
+        return $this->hasMany(Logged::class);
+    }
+
+    /**
      * Get the user's full name.
      *
      * @return string
@@ -103,5 +113,15 @@ class User extends Authenticatable
     public function getIsAdminAttribute()
     {
         return $this->role_id == 1 ? true : false;
+    }
+
+    /**
+     * Get the user's has logged.
+     *
+     * @return boolean
+     */
+    public function getHasLoggedAttribute()
+    {
+        return $this->loggeds->where('logged', true)->count() > 0 ? true : false;
     }
 }

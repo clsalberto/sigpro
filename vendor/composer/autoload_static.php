@@ -16,9 +16,9 @@ class ComposerStaticInit1e017d341815a0c144efdb5d8667d0ad
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'ad47e47ea577302c0ff6daee6d2753ef' => __DIR__ . '/../..' . '/app/Helpers/ProjectHelper.php',
     );
 
@@ -126,8 +126,8 @@ class ComposerStaticInit1e017d341815a0c144efdb5d8667d0ad
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -375,6 +375,8 @@ class ComposerStaticInit1e017d341815a0c144efdb5d8667d0ad
         'App\\ClassDate' => __DIR__ . '/../..' . '/app/ClassDate.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Course' => __DIR__ . '/../..' . '/app/Course.php',
+        'App\\Events\\UserLogged' => __DIR__ . '/../..' . '/app/Events/UserLogged.php',
+        'App\\Events\\UserUnlogged' => __DIR__ . '/../..' . '/app/Events/UserUnlogged.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Formula' => __DIR__ . '/../..' . '/app/Formula.php',
         'App\\Frequency' => __DIR__ . '/../..' . '/app/Frequency.php',
@@ -402,6 +404,9 @@ class ComposerStaticInit1e017d341815a0c144efdb5d8667d0ad
         'App\\Http\\Traits\\RegistersPasswords' => __DIR__ . '/../..' . '/app/Http/Traits/RegistersPasswords.php',
         'App\\Http\\Traits\\RegistersProfiles' => __DIR__ . '/../..' . '/app/Http/Traits/RegistersProfiles.php',
         'App\\Http\\Traits\\RegistersUsers' => __DIR__ . '/../..' . '/app/Http/Traits/RegistersUsers.php',
+        'App\\Listeners\\UserLoggedNotification' => __DIR__ . '/../..' . '/app/Listeners/UserLoggedNotification.php',
+        'App\\Listeners\\UserUnloggedNotification' => __DIR__ . '/../..' . '/app/Listeners/UserUnloggedNotification.php',
+        'App\\Logged' => __DIR__ . '/../..' . '/app/Logged.php',
         'App\\Mail\\RegisteredUser' => __DIR__ . '/../..' . '/app/Mail/RegisteredUser.php',
         'App\\Modality' => __DIR__ . '/../..' . '/app/Modality.php',
         'App\\Module' => __DIR__ . '/../..' . '/app/Module.php',

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
+use App\Events\UserLogged;
+use App\Events\UserUnlogged;
+
 trait AuthenticatesUsers
 {
     use RedirectsUsers, ThrottlesLogins;
@@ -101,6 +104,8 @@ trait AuthenticatesUsers
 
         $this->clearLoginAttempts($request);
 
+        event(new UserLogged($this->guard()->user()));
+
         return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());
     }
@@ -150,6 +155,8 @@ trait AuthenticatesUsers
      */
     public function logout(Request $request)
     {
+        event(new UserUnlogged($this->guard()->user()));
+
         $this->guard()->logout();
 
         $request->session()->invalidate();
