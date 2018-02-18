@@ -48,26 +48,21 @@
 						<td class="col-lg-2 hidden-md hidden-xs">{{ $registration->student->cpf }}</td>
 						<td class="col-md-1 col-xs-2">
 							<input type="hidden" name="registration_id[]" value="{{ $registration->id }}">
-							<input type="text" class="form-control" name="punctuation_a[]" value="{{ ctof($registration->score->punctuation_a) }}"
-							 data-inputmask="'mask': ['9[9].9']" data-mask>
+							<input type="text" class="form-control score" name="punctuation_a[]" value="{{ ctof($registration->score->punctuation_a) }}">
 						</td>
 						@if ($registration->score->has_form)
 						<td class="col-md-1 col-xs-2">
-							<input type="text" class="form-control" name="punctuation_b[]" value="{{ ctof($registration->score->punctuation_b) }}"
-							 data-inputmask="'mask': ['9[9].9']" data-mask>
+							<input type="text" class="form-control score" name="punctuation_b[]" value="{{ ctof($registration->score->punctuation_b) }}">
 						</td>
 						@endif
 						<td class="col-md-1 col-xs-2">
-							<input type="text" class="form-control" name="punctuation_c[]" value="{{ ctof($registration->score->punctuation_c) }}"
-							 data-inputmask="'mask': ['9[9].9']" data-mask>
+							<input type="text" class="form-control score" name="punctuation_c[]" value="{{ ctof($registration->score->punctuation_c) }}">
 						</td>
 							<td class="col-md-1 col-xs-2">
 								@if (ctoi($registration->score->average)
 								< ctoi(config( 'template.institution.media')) || ctoi($registration->score->punctuation_d) > 0)
-									<input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}"
-									 data-inputmask="'mask': ['9[9].9']" data-mask> @else
-									<input type="text" class="form-control" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}"
-									 data-inputmask="'mask': ['9[9].9']" data-mask readonly> @endif
+									<input type="text" class="form-control score" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}"> @else
+									<input type="text" class="form-control score" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}" readonly> @endif
 							</td>
 							<td class="col-md-1 col-xs-1">
 								<strong>{{ $registration->score->average }}</strong>
@@ -123,12 +118,24 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('plugins/input-mask/jquery.inputmask.js') }}"></script>
-<script src="{{ asset('plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
+<script src="{{ asset('plugins/jquery-mask/jquery.mask.min.js') }}"></script>
 <script>
-	$(function () {
-        $('[data-mask]').inputmask();
-    });
+    $(function() {
+        var mask = function (value) {
+                return value.length > 2 ? '00.0' : '0.0';
+            },
+            options = {
+                reverse: true,
+                onKeyPress: function(value, e, field, options) {
+                    field.mask(mask.apply({}, arguments), options);
+                    if (field.cleanVal() > 100) {
+                        $.Notification.autoHideNotify('error', 'top right', '','Valor inválido '+ value);
+                        field.val('');
+                    }
+                }
+            };
 
+        $('.score').mask(mask, options);
+    });
 </script>
 @stop

@@ -1,55 +1,35 @@
-@if (Session::has('success'))
-    <script type="text/javascript">
-        toastr.options = {
-            closeButton: true,
-            progressBar: true,
-            positionClass: 'toast-top-right',
-            showMethod: 'slideDown',
-            timeOut: 5000
-        };
-
-        toastr.success("{{ Session::get('success') }}");
+@if (session()->has('success'))
+    <script>
+        $.Notification.autoHideNotify('success', 'top right', '','{!! session()->get('success') !!}');
     </script>
 @endif
 
-@if (Session::has('error'))
-    <script type="text/javascript">
-        toastr.options = {
-            closeButton: true,
-            progressBar: true,
-            positionClass: 'toast-top-right',
-            showMethod: 'slideDown',
-            timeOut: 5000
-        };
-
-        toastr.error("{{ Session::get('error') }}");
+@if (session()->has('info'))
+    <script>
+        $.Notification.autoHideNotify('info', 'top right', '','{!! session()->get('info') !!}');
     </script>
 @endif
 
-@if (Session::has('warning'))
-    <script type="text/javascript">
-        toastr.options = {
-            closeButton: true,
-            progressBar: true,
-            positionClass: 'toast-top-right',
-            showMethod: 'slideDown',
-            timeOut: 5000
-        };
-
-        toastr.warning("{{ Session::get('warning') }}");
+@if (session()->has('warning'))
+    <script>
+        $.Notification.autoHideNotify('warning', 'top right', '','{!! session()->get('warning') !!}');
     </script>
 @endif
 
-@if (Session::has('info'))
-    <script type="text/javascript">
-        toastr.options = {
-            closeButton: true,
-            progressBar: true,
-            positionClass: 'toast-top-right',
-            showMethod: 'slideDown',
-            timeOut: 5000
-        };
+@if (session()->has('error'))
+    <script>
+        $.Notification.autoHideNotify('error', 'top right', '','{!! session()->get('error') !!}');
+    </script>
+@endif
 
-        toastr.info("{{ Session::get('info') }}");
+@if (session()->has('black'))
+    <script>
+        $.Notification.autoHideNotify('black', 'top right', '','{!! session()->get('black') !!}');
+    </script>
+@endif
+
+@if (session()->has('white'))
+    <script>
+        $.Notification.autoHideNotify('white', 'top right', '','{!! session()->get('white') !!}');
     </script>
 @endif

@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('plugins/Ionicons/css/ionicons.css') }}">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+    <!-- Notify -->
+    <link rel="stylesheet" href="{{ asset('plugins/notify/css/notification.css') }}">
 
     @yield('stylesheets')
 
@@ -46,6 +46,9 @@
     <script src="{{ asset('plugins/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('plugins/notify/js/notify.min.js') }}"></script>
+    <script src="{{ asset('plugins/notify/js/notify-metro.js') }}"></script>
+    <script src="{{ asset('plugins/notify/js/notifications.js') }}"></script>
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
