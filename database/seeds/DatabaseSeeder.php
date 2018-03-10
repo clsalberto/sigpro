@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $environment = getenv('APP_ENV') ?: 'production';
 
+        $this->call(PermissionTableSeeder::class);
         $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(ModalityTableSeeder::class);
@@ -20,7 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PactTableSeeder::class);
         $this->call(FormulaTableSeeder::class);
 
-        //if ($environment != 'production') {
+        if ($environment != 'production') {
+            
             $this->call(CourseTableSeeder::class);
             $this->call(ModuleTableSeeder::class);
             $this->call(CityTableSeeder::class);
@@ -31,6 +33,6 @@ class DatabaseSeeder extends Seeder
             $this->call(ClassDateTableSeeder::class);
             $this->call(FrequencyTableSeeder::class);
             $this->call(ScoreTableSeeder::class);
-        //}
+        }
     }
 }

@@ -53,13 +53,21 @@
 						<th class="col-md-1 hidden-xs">ID</th>
 						<th class="col-md-4 col-xs-3">Nome</th>
 						<th class="col-lg-2 hidden-md hidden-xs">CPF</th>
-						<th class="col-md-1 col-xs-2">AP1</th>
+						<th class="col-md-1 col-xs-2 text-center">
+							@can('post-score-punctuation-a', $registrations) AP1 @endcan
+						</th>
 						@if ($registrations->first()->score->has_form)
-						<th class="col-md-1 col-xs-2">AP2</th>
+							<th class="col-md-1 col-xs-2 text-center">
+								@can('post-score-punctuation-b', $registrations) AP2 @endcan
+							</th>
 						@endif
-						<th class="col-md-1 col-xs-2">AF</th>
-						<th class="col-md-1 col-xs-2">RF</th>
-						<th class="col-md-1 col-xs-1">MD</th>
+						<th class="col-md-1 col-xs-2 text-center">
+							@can('post-score-punctuation-c', $registrations) AF @endcan
+						</th>
+						<th class="col-md-1 col-xs-2 text-center">
+							@can('post-score-punctuation-d', $registrations) RF @endcan
+						</th>
+						<th class="col-md-1 col-xs-1 text-center">MD</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,29 +76,39 @@
 						<td class="col-md-1 hidden-xs">{{ $registration->student->id }}</td>
 						<td class="col-md-4 col-xs-2">{{ $registration->student->full_name }}</td>
 						<td class="col-lg-2 hidden-md hidden-xs">{{ $registration->student->cpf }}</td>
-						<td class="col-md-1 col-xs-2">
+						<td class="col-md-1 col-xs-2 text-center">
 							<input type="hidden" name="registration_id[]" value="{{ $registration->id }}">
-							<input type="text" class="form-control score" name="punctuation_a[]" value="{{ ctof($registration->score->punctuation_a) }}">
+							@can('post-score-punctuation-a', $registration)
+								<input type="text" class="form-control score" name="punctuation_a[]" value="{{ ctof($registration->score->punctuation_a) }}">
+							@endcan
 						</td>
 						@if ($registration->score->has_form)
-						<td class="col-md-1 col-xs-2">
-							<input type="text" class="form-control score" name="punctuation_b[]" value="{{ ctof($registration->score->punctuation_b) }}">
-						</td>
-						@endif
-						<td class="col-md-1 col-xs-2">
-							<input type="text" class="form-control score" name="punctuation_c[]" value="{{ ctof($registration->score->punctuation_c) }}">
-						</td>
-							<td class="col-md-1 col-xs-2">
-								@if (ctoi($registration->score->average)
-								< ctoi(config( 'template.institution.media')) || ctoi($registration->score->punctuation_d) > 0)
-									<input type="text" class="form-control score" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}"> @else
-									<input type="text" class="form-control score" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}" readonly> @endif
+							<td class="col-md-1 col-xs-2 text-center">
+								@can('post-score-punctuation-b', $registration)
+									<input type="text" class="form-control score" name="punctuation_b[]" value="{{ ctof($registration->score->punctuation_b) }}">
+								@endcan
 							</td>
-							<td class="col-md-1 col-xs-1">
-								<strong>{{ $registration->score->average }}</strong>
-								@if ($room->check_score) {!! ctoi($registration->score->average)
-								< ctoi(config( 'template.institution.media')) ? " <b class='label label-danger'>REP</b>" :
-								 " <b class='label label-success'>APR</b>" !!} @endif </td>
+						@endif
+						<td class="col-md-1 col-xs-2 text-center">
+							@can('post-score-punctuation-c', $registration)
+								<input type="text" class="form-control score" name="punctuation_c[]" value="{{ ctof($registration->score->punctuation_c) }}">
+							@endcan
+						</td>
+						<td class="col-md-1 col-xs-2 text-center">
+							@can('post-score-punctuation-d', $registration)
+								@if (ctoi($registration->score->average) < ctoi(config( 'template.institution.media')))
+									<input type="text" class="form-control score" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}">
+								@else
+									<input type="text" class="form-control score" name="punctuation_d[]" value="{{ ctof($registration->score->punctuation_d) }}" readonly>
+								@endif
+							@endcan
+						</td>
+						<td class="col-md-1 col-xs-1 text-center">
+							<strong>{{ $registration->score->average }}</strong>
+							@if ($room->check_score)
+								{!! ctoi($registration->score->average) < ctoi(config( 'template.institution.media')) ? " <b class='label label-danger'>REP</b>" : " <b class='label label-success'>APR</b>" !!}
+							@endif
+						</td>
 					</tr>
 					@endforeach
 				</tbody>

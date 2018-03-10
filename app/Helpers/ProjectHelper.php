@@ -27,64 +27,64 @@ if (!function_exists("proper_case")) {
 }
 
 if (!function_exists("ctoi")) {
-    function ctoi($number)
+    function ctoi($score)
     {
-        if ($number == "") {
+        if ($score == "") {
             return null;
-        } elseif ($number == '1._' || $number == '1_._') {
-            $number = 1.0;
-        } elseif ($number == '2._' || $number == '2_._') {
-            $number = 2.0;
-        } elseif ($number == '3._' || $number == '3_._') {
-            $number = 3.0;
-        } elseif ($number == '4._' || $number == '4_._') {
-            $number = 4.0;
-        } elseif ($number == '5._' || $number == '5_._') {
-            $number = 5.0;
-        } elseif ($number == '6._' || $number == '6_._') {
-            $number = 6.0;
-        } elseif ($number == '7._' || $number == '7_._') {
-            $number = 7.0;
-        } elseif ($number == '8._' || $number == '8_._') {
-            $number = 8.0;
-        } elseif ($number == '9._' || $number == '9_._') {
-            $number = 9.0;
-        } elseif ($number == '10._') {
-            $number = 10.0;
+        } elseif ($score == '1._' || $score == '1_._') {
+            $score = 1.0;
+        } elseif ($score == '2._' || $score == '2_._') {
+            $score = 2.0;
+        } elseif ($score == '3._' || $score == '3_._') {
+            $score = 3.0;
+        } elseif ($score == '4._' || $score == '4_._') {
+            $score = 4.0;
+        } elseif ($score == '5._' || $score == '5_._') {
+            $score = 5.0;
+        } elseif ($score == '6._' || $score == '6_._') {
+            $score = 6.0;
+        } elseif ($score == '7._' || $score == '7_._') {
+            $score = 7.0;
+        } elseif ($score == '8._' || $score == '8_._') {
+            $score = 8.0;
+        } elseif ($score == '9._' || $score == '9_._') {
+            $score = 9.0;
+        } elseif ($score == '10._') {
+            $score = 10.0;
         }
-        return (int) ($number * 10);
+        return (int) ($score * 10);
     }
 }
 
 if (!function_exists("ctof")) {
-    function ctof($number)
+    function ctof($score)
     {
-        if (is_null($number)) {
+        if (is_null($score)) {
             return "";
-        } elseif ($number <= 0) {
+        } elseif ($score <= 0) {
             return "0.0";
-        } elseif ($number == 10) {
+        } elseif ($score == 10) {
             return "1.0";
-        } elseif ($number == 20) {
+        } elseif ($score == 20) {
             return "2.0";
-        } elseif ($number == 30) {
+        } elseif ($score == 30) {
             return "3.0";
-        } elseif ($number == 40) {
+        } elseif ($score == 40) {
             return "4.0";
-        } elseif ($number == 50) {
+        } elseif ($score == 50) {
             return "5.0";
-        } elseif ($number == 60) {
+        } elseif ($score == 60) {
             return "6.0";
-        } elseif ($number == 70) {
+        } elseif ($score == 70) {
             return "7.0";
-        } elseif ($number == 80) {
+        } elseif ($score == 80) {
             return "8.0";
-        } elseif ($number == 90) {
+        } elseif ($score == 90) {
             return "9.0";
-        } elseif ($number >= 100) {
+        } elseif ($score >= 100) {
             return "10.0";
         } else {
-            return (float) ($number / 10);
+            return (float) ($score / 10);
         }
     }
 }
@@ -148,5 +148,86 @@ if (!function_exists("format_date")) {
         }
 
         return "{$sem}<br><b>{$dia}</b> <i class='fa fa-angle-double-right'></i> {$mes} {$ano}";
+    }
+}
+
+if (!function_exists("format_date_name")) {
+    function format_date_name($date, $year = false)
+    {
+
+        $mes = date("m", strtotime($date));
+        $ano = date("Y", strtotime($date));
+
+        switch ($mes){
+            case 1: $mes = "Jan"; break;
+            case 2: $mes = "Fev"; break;
+            case 3: $mes = "Mar"; break;
+            case 4: $mes = "Abr"; break;
+            case 5: $mes = "Mai"; break;
+            case 6: $mes = "Jun"; break;
+            case 7: $mes = "Jul"; break;
+            case 8: $mes = "Ago"; break;
+            case 9: $mes = "Set"; break;
+            case 10: $mes = "Out"; break;
+            case 11: $mes = "Nov"; break;
+            case 12: $mes = "Dez"; break;
+        }
+
+        if ($year) {
+            return "{$mes} {$ano}";
+        }
+
+        return "{$mes}";
+    }
+}
+
+if (!function_exists("round_score")) {
+    function round_score($score)
+    {
+        if (is_null($score)) {
+            return null;
+        } elseif ($score >= 0 && $score < 0.5) {
+            return "0.0";
+        } elseif ($score >= 0.5 && $score < 1) {
+            return "0.5";
+        } elseif ($score >= 1 && $score < 1.5) {
+            return "1.0";
+        } elseif ($score >= 1.5 && $score < 2) {
+            return "1.5";
+        } elseif ($score >= 2 && $score < 2.5) {
+            return "2.0";
+        } elseif ($score >= 2.5 && $score < 3) {
+            return "2.5";
+        } elseif ($score >= 3 && $score < 3.5) {
+            return "3.0";
+        } elseif ($score >= 3.5 && $score < 4) {
+            return "3.5";
+        } elseif ($score >= 4 && $score < 4.5) {
+            return "4.0";
+        } elseif ($score >= 4.5 && $score < 5) {
+            return "4.5";
+        } elseif ($score >= 5 && $score < 5.5) {
+            return "5.0";
+        } elseif ($score >= 5.5 && $score < 6) {
+            return "5.5";
+        } elseif ($score >= 6 && $score < 6.5) {
+            return "6.0";
+        } elseif ($score >= 6.5 && $score < 7) {
+            return "6.5";
+        } elseif ($score >= 7 && $score < 7.5) {
+            return "7.0";
+        } elseif ($score >= 7.5 && $score < 8) {
+            return "7.5";
+        } elseif ($score >= 8 && $score < 8.5) {
+            return "8.0";
+        } elseif ($score >= 8.5 && $score < 9) {
+            return "8.5";
+        } elseif ($score >= 9 && $score < 9.5) {
+            return "9.0";
+        } elseif ($score >= 9.5 && $score < 10) {
+            return "9.5";
+        } else {
+            return "10.0";
+        }
     }
 }

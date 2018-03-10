@@ -18,45 +18,49 @@
         <!-- /.box-header -->
         <div class="box-header">
             <h3 class="box-title">{{ trans('template.titles.users') }}</h3>
-            <a href="{{ route('user.create') }}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Novo</a>
+            @can('create-users', $users)
+                <a href="{{ route('user.create') }}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Novo</a>
+            @endcan
         </div>
         <!-- /.box-header -->
 
         <!-- /.box-body -->
         <div class="box-body">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th class="col-md-1">ID</th>
-                        <th class="col-md-8">Nome</th>
-                        <th class="col-md-2">Tipo</th>
-                        <th class="col-md-1">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if(count($users) > 0)
-                        @foreach ($users as $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->full_name }}</td>
-                                <td>{{ $user->role->name }}</td>
-                                <td>
-                                    @if ($user->has_logged)
-                                        <small class="label pull-right bg-green">Logado</small>
-                                    @else
-                                        <small class="label pull-right bg-danger">Deslogado</small>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="4">{{ 'Registros: ' . count($users) }}</th>
-                    </tr>
-                </tfoot>
-            </table>
+            @can('view-users', $users)
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">ID</th>
+                            <th class="col-md-8">Nome</th>
+                            <th class="col-md-2">Tipo</th>
+                            <th class="col-md-1">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(count($users) > 0)
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->full_name }}</td>
+                                    <td>{{ $user->role->name }}</td>
+                                    <td>
+                                        @if ($user->has_logged)
+                                            <small class="label pull-right bg-green">Logado</small>
+                                        @else
+                                            <small class="label pull-right bg-danger">Deslogado</small>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="4">{{ 'Registros: ' . count($users) }}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            @endcan
         </div>
         <!-- /.box-body -->
 

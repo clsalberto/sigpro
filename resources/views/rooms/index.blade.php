@@ -1,13 +1,24 @@
-@extends('layouts.page') @section('title', 'Turmas') @section('content_title')
+@extends('layouts.page')
+
+@section('title', 'Turmas')
+
+@section('content_title')
 <h1>
 	Turmas
 	<small>Turmas por município</small>
 </h1>
-@stop @section('sidebar') @include('partials.sidebars.sidebar-home') @stop @section('content')
+@stop
+
+@section('sidebar')
+	@include('partials.sidebars.sidebar-home')
+@stop
+
+@section('content')
 
 <ul class="timeline">
 
-	@if(count($rooms) > 0) @foreach ($rooms as $city_name => $rooms_details)
+	@if(count($rooms) > 0)
+		@foreach ($rooms as $city_name => $rooms_details)
 
 	<li class="time-label">
 		<span class="bg-green-active">
@@ -15,8 +26,11 @@
 		</span>
 	</li>
 
-	@php $course = '' @endphp @foreach($rooms_details as $room) @if($course
-	<> $room->course->name)
+	@php $course = '' @endphp
+
+	@foreach($rooms_details as $room)
+
+	@if($course <> $room->course->name)
 
 		<!-- timeline item -->
 		<li>
@@ -51,7 +65,10 @@
 						</div>
 					</div>
 
-					@php $old_course = $course @endphp @php $course = $room->course->name @endphp @endforeach @if($old_course = '')
+					@php $old_course = $course @endphp
+					@php $course = $room->course->name @endphp
+				@endforeach
+				@if($old_course = '')
 
 				</div>
 			</div>

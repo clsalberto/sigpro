@@ -55,19 +55,19 @@ class Score extends Model
         if ($formula == 2) {
             if ($punct_d > 0) {
                 $average = intval(($punct_a + $punct_c) / 2);
-                return ctof(intval(($average + $punct_d) / 2));
+                return round_score(ctof(intval(($average + $punct_d) / 2)));
             } else {
-                return ctof(intval(($punct_a + $punct_c) / 2));
+                return round_score(ctof(intval(($punct_a + $punct_c) / 2)));
             }
         } elseif ($formula == 3) {
             if ($punct_d > 0) {
                 $average = intval(($punct_a + $punct_b + $punct_c) / 3);
-                return ctof(intval(($average + $punct_d) / 2));
+                return round_score(ctof(intval(($average + $punct_d) / 2)));
             } else {
-                return ctof(intval(($punct_a + $punct_b + $punct_c) / 3));
+                return round_score(ctof(intval(($punct_a + $punct_b + $punct_c) / 3)));
             }
         } else {
-            return ctof('0');
+            return round_score(ctof('0'));
         }
     }
 
@@ -78,8 +78,7 @@ class Score extends Model
      */
     public function getHasFormAttribute()
     {
-        $formula = (int) $this->registration->room->formula_id;
+        $formula = $this->registration->room->formula_id;
         return $formula > 2 ? true : false;
     }
-
 }

@@ -13,8 +13,13 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(['name' => 'Administrador']);
-        Role::create(['name' => 'Coordenador']);
-        Role::create(['name' => 'Professor']);
+        $role = Role::create(['name' => 'Administrador']);
+        $role->permissions()->attach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+        $role = Role::create(['name' => 'Coordenador']);
+        $role->permissions()->attach([3, 4, 5, 6, 7, 8, 9, 10]);
+
+        $role = Role::create(['name' => 'Professor']);
+        $role->permissions()->attach([3, 4, 5, 6, 7, 8, 9, 10]);
     }
 }

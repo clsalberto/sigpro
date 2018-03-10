@@ -30,9 +30,17 @@ Route::post('/profile/password', 'Auth\PasswordController@register')->name('pass
 /*
  * Routes users.
  */
-Route::get('/users', 'Auth\UsersController@showUsers')->name('users');
-Route::get('/user/create', 'Auth\UsersController@showRegisterUser')->name('user.create');
-Route::post('/user/create', 'Auth\UsersController@register')->name('user.store');
+Route::get('/users', 'Auth\UsersController@showUsers')
+	->middleware('can:view-users,App\User')
+	->name('users');
+
+Route::get('/user/create', 'Auth\UsersController@showRegisterUser')
+	->middleware('can:create-users,App\User')
+	->name('user.create');
+
+Route::post('/user/create', 'Auth\UsersController@register')
+	->middleware('can:create-users,App\User')
+	->name('user.store');
 
 Route::get('/users/{id}/edit', 'Auth\UsersController@showUserEdit')->name('user.edit');
 Route::post('/users/{id}/edit', 'Auth\UsersController@showUserEdit')->name('user.update');
@@ -45,24 +53,32 @@ Route::get('/rooms', 'RoomController@index')->name('rooms');
 /*
  * Routes frequencies.
  */
-Route::get('/room/{id}/frequencies', 'FrequencyController@index')->name('frequencies');
-Route::get('/room/{room_id}/{class_date_id}/frequencies', 'FrequencyController@show')->name('frequencies.students');
-Route::get('/room/{room_id}/{class_date_id}/frequencies/print', 'FrequencyController@print')->name('frequencies.students.print');
+Route::get('/room/{id}/frequencies', 'FrequencyController@index')
+	->middleware('can:view-frequencies,App\Frequency')
+	->name('frequencies');
+
+Route::get('/room/{room_id}/{class_date_id}/frequencies', 'FrequencyController@show')
+	->middleware('can:view-frequencies,App\Frequency')
+	->name('frequencies.students');
+
+Route::get('/room/{room_id}/{class_date_id}/frequencies/print', 'FrequencyController@print')
+	->middleware('can:view-frequencies,App\Frequency')
+	->name('frequencies.students.print');
 
 Route::get('/room/{room_id}/{class_date_id}/frequency/check', 'FrequencyController@checkFrequency')->name('check.frequency');
 Route::get('/room/{id}/score/check', 'FrequencyController@checkScore')->name('check.score');
 
-Route::post('/frequency/{class_date_id}/{registration_id}/active_a', 'FrequencyController@active_a');
-Route::post('/frequency/{class_date_id}/{registration_id}/inactive_a', 'FrequencyController@inactive_a');
+Route::post('/frequency/{class_date_id}/{registration_id}/active_a', 'FrequencyController@active_a')->middleware('can:post-frequencies,App\Frequency');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_a', 'FrequencyController@inactive_a')->middleware('can:post-frequencies,App\Frequency');
 
-Route::post('/frequency/{class_date_id}/{registration_id}/active_b', 'FrequencyController@active_b');
-Route::post('/frequency/{class_date_id}/{registration_id}/inactive_b', 'FrequencyController@inactive_b');
+Route::post('/frequency/{class_date_id}/{registration_id}/active_b', 'FrequencyController@active_b')->middleware('can:post-frequencies,App\Frequency');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_b', 'FrequencyController@inactive_b')->middleware('can:post-frequencies,App\Frequency');
 
-Route::post('/frequency/{class_date_id}/{registration_id}/active_c', 'FrequencyController@active_c');
-Route::post('/frequency/{class_date_id}/{registration_id}/inactive_c', 'FrequencyController@inactive_c');
+Route::post('/frequency/{class_date_id}/{registration_id}/active_c', 'FrequencyController@active_c')->middleware('can:post-frequencies,App\Frequency');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_c', 'FrequencyController@inactive_c')->middleware('can:post-frequencies,App\Frequency');
 
-Route::post('/frequency/{class_date_id}/{registration_id}/active_d', 'FrequencyController@active_d');
-Route::post('/frequency/{class_date_id}/{registration_id}/inactive_d', 'FrequencyController@inactive_d');
+Route::post('/frequency/{class_date_id}/{registration_id}/active_d', 'FrequencyController@active_d')->middleware('can:post-frequencies,App\Frequency');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_d', 'FrequencyController@inactive_d')->middleware('can:post-frequencies,App\Frequency');
 
 /*
  * Routes scores.
