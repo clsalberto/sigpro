@@ -19,6 +19,7 @@ return [
         'cpf'                         => 'CPF',
         'content'                     => 'content',
         'formula'                     => 'Formula',
+        'permissions'                 => 'Permissions',
     ],
 
     'buttons' => [

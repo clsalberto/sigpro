@@ -46,7 +46,8 @@
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
                             <label>
-                                <input type="checkbox" name="remember"> {{ trans('template.fields.remember_me') }}
+                                <input type="checkbox" name="remember">
+                                <span class="text">{{ trans('template.fields.remember_me') }}</span>
                             </label>
                         </div>
                     </div>

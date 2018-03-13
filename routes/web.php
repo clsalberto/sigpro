@@ -46,6 +46,15 @@ Route::get('/users/{id}/edit', 'Auth\UsersController@showUserEdit')->name('user.
 Route::post('/users/{id}/edit', 'Auth\UsersController@showUserEdit')->name('user.update');
 
 /*
+ * Routes roles.
+ */
+Route::get('/roles', 'Auth\RolesController@showRoles')->name('roles');
+Route::get('/role/create', 'Auth\RolesController@showRegisterRole')->name('role.create');
+Route::post('/role/create', 'Auth\RolesController@register')->name('role.store');
+Route::get('/roles/{id}/edit', 'Auth\RolesController@showRoleEdit')->name('role.edit');
+Route::post('/roles/{id}/edit', 'Auth\RolesController@update')->name('role.update');
+
+/*
  * Routes rooms.
  */
 Route::get('/rooms', 'RoomController@index')->name('rooms');

@@ -25,6 +25,7 @@ return [
         'cpf'                         => 'CPF',
         'content'                     => 'Conteúdo Programático',
         'formula'                     => 'Fórmula',
+        'permissions'                 => 'Permições',
     ],
 
     'buttons' => [

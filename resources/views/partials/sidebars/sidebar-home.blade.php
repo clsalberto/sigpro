@@ -11,4 +11,9 @@
 			<i class="fa fa-users text-green"></i> <span>Usuários</span>
 		</a>
 	</li>
+	<li class="{{ set_active('roles') }}">
+		<a href="{{ route('roles') }}">
+			<i class="fa fa-unlock-alt text-green"></i> <span>Tipos e Permições</span>
+		</a>
+	</li>
 @endif

@@ -133,6 +133,7 @@ return [
         'cpf'                         => 'CPF',
         'content'                     => 'content',
         'formula_id'                  => 'formula',
+        'permissions'                 => 'permiçoẽs',
     ],
 
 ];
