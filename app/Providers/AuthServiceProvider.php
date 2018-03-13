@@ -27,12 +27,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $permissions = Permission::with('roles')->get();
-
-        foreach ($permissions as $permission) {
-            Gate::define($permission->slug, function ($user) use ($permission) {
-                return $permission->roles->contains($user->role);
-            });
+        if ($permissions = Permission::with('roles')->get())
+        {
+            foreach ($permissions as $permission) {
+                Gate::define($permission->slug, function ($user) use ($permission) {
+                    return $permission->roles->contains($user->role);
+                });
+            }
         }
     }
 }
