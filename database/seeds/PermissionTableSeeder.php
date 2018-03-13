@@ -19,47 +19,47 @@ class PermissionTableSeeder extends Seeder
         ]);
 
         Permission::create([
-        	'name' => 'Ver lista de usuários',
+        	'name' => 'Visualizar lista de usuários',
         	'slug' => 'view-users'
         ]);
 
         Permission::create([
-        	'name' => 'Ver frequências',
+        	'name' => 'Visualizar listas de frequências',
         	'slug' => 'view-frequencies'
         ]);
 
         Permission::create([
-        	'name' => 'Lançar frequências',
+        	'name' => 'Lançar listas de frequências',
         	'slug' => 'post-frequencies'
         ]);
 
         Permission::create([
-        	'name' => 'Ver notas',
+        	'name' => 'Visualizar listas de notas',
         	'slug' => 'view-scores'
         ]);
 
         Permission::create([
-        	'name' => 'Lançar notas',
+        	'name' => 'Lançar listas de notas',
         	'slug' => 'post-scores'
         ]);
 
         Permission::create([
-        	'name' => 'Lançar notas AP1',
+        	'name' => 'Lançar notas de avaliação parcial (AP1)',
         	'slug' => 'post-score-punctuation-a'
         ]);
 
         Permission::create([
-        	'name' => 'Lançar notas AP2',
+        	'name' => 'Lançar notas de avaliação parcial (AP2)',
         	'slug' => 'post-score-punctuation-b'
         ]);
 
         Permission::create([
-        	'name' => 'Lançar notas AF',
+        	'name' => 'Lançar notas de avaliação final (AF)',
         	'slug' => 'post-score-punctuation-c'
         ]);
 
         Permission::create([
-        	'name' => 'Lançar notas RF',
+        	'name' => 'Lançar notas de recuperação final (RF)',
         	'slug' => 'post-score-punctuation-d'
         ]);
     }
