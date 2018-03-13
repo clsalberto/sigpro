@@ -35,6 +35,8 @@ class AuthServiceProvider extends ServiceProvider
                     });
                 }
             }
+        } catch (Exception $e) {
+            //
         }
     }
 }
