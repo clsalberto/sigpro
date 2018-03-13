@@ -14,7 +14,7 @@ class CreateRoomUserTable extends Migration
     public function up()
     {
         Schema::create('room_user', function (Blueprint $table) {
-            $table->integer('room_id')->unsigned();
+            $table->integer('room_id');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

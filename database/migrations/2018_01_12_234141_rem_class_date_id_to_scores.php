@@ -12,6 +12,10 @@ class RemClassDateIdToScores extends Migration
     public function up()
     {
         Schema::table('scores', function (Blueprint $table) {
+            $table->dropForeign('scores_class_date_id_foreign');
+        });
+
+        Schema::table('scores', function (Blueprint $table) {
             $table->dropColumn('class_date_id');
         });
 

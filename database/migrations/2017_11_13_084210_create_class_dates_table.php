@@ -15,7 +15,7 @@ class CreateClassDatesTable extends Migration
     {
         Schema::create('class_dates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('room_id')->unsigned();
+            $table->integer('room_id');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->date('class_date');
             $table->boolean('avaliation');

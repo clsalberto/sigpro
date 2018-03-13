@@ -3,7 +3,9 @@
 }
 
 .content-wrapper {
-    background-image: url("../images/fundo_sistema.png");
-    background-position: center;
-    background-repeat: repeat-y;
+	background: url('../images/fundo_sistema.png') center center repeat fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
