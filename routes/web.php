@@ -43,7 +43,7 @@ Route::post('/user/create', 'Auth\UsersController@register')
 	->name('user.store');
 
 Route::get('/users/{id}/edit', 'Auth\UsersController@showUserEdit')->name('user.edit');
-Route::post('/users/{id}/edit', 'Auth\UsersController@showUserEdit')->name('user.update');
+Route::post('/users/{id}/edit', 'Auth\UsersController@editUser')->name('user.update');
 
 /*
  * Routes roles.

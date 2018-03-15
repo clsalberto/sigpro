@@ -40,6 +40,20 @@ trait RegistersUsers
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUserEdit($id)
+    {
+        $user_edit = User::with('role')->find($id);
+
+        $types = Role::orderBy('name')->get();
+
+        return view('users.edit', compact(['types', 'user_edit']));
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -50,6 +64,20 @@ trait RegistersUsers
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'type' => 'required|integer',
+        ]);
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validatorEditUser(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
             'type' => 'required|integer',
         ]);
     }
@@ -93,6 +121,23 @@ trait RegistersUsers
 
         return $this->registered($user, $password) ?: redirect($this->redirectPath())
             ->with('success', 'Usuário registrado com sucesso!');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function editUser(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $this->validatorEditUser($data)->validate();
+
+        $this->updateUser($data, $id);
+
+        return redirect($this->redirectPath())->with('success', 'Usuário alterado com sucesso!');
     }
 
     /**

@@ -31,9 +31,10 @@
                     <thead>
                         <tr>
                             <th class="col-md-1">ID</th>
-                            <th class="col-md-8">Nome</th>
+                            <th class="col-md-7">Nome</th>
                             <th class="col-md-2">Tipo</th>
                             <th class="col-md-1">Status</th>
+                            <th class="col-md-1"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,13 +51,16 @@
                                             <small class="label pull-right bg-danger">Deslogado</small>
                                         @endif
                                     </td>
+                                    <td>
+                                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-default btn-xs pull-right"><i class="fa fa-edit margin-r-5 text-green"></i> Editar</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="4">{{ 'Registros: ' . count($users) }}</th>
+                            <th colspan="5">{{ 'Registros: ' . count($users) }}</th>
                         </tr>
                     </tfoot>
                 </table>

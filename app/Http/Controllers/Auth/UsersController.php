@@ -8,7 +8,7 @@ use App\User;
 
 class UsersController extends Controller
 {
-    use Registersusers;
+    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -43,6 +43,22 @@ class UsersController extends Controller
         ]);
 
         $user->profile()->create();
+
+        return $user;
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    protected function updateUser(array $data, $id)
+    {
+        $user = User::find($id);
+        $user->name = proper_case($data['name']);
+        $user->role_id = $data['type'];
+        $user->save();
 
         return $user;
     }
