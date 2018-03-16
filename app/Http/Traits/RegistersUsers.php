@@ -46,11 +46,11 @@ trait RegistersUsers
      */
     public function showUserEdit($id)
     {
-        $user_edit = User::with('role')->find($id);
+        $user = User::with('role')->find($id);
 
         $types = Role::orderBy('name')->get();
 
-        return view('users.edit', compact(['types', 'user_edit']));
+        return view('users.edit', compact(['types', 'user']));
     }
 
     /**

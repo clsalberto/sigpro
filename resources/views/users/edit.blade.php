@@ -25,7 +25,7 @@
         </div>
         <!-- /.box-header -->
 
-        <form method="POST" action="{{ route('user.update', $user_edit->id) }}">
+        <form method="POST" action="{{ route('user.update', $user->id) }}">
         {!! csrf_field() !!}
 
         <!-- /.box-body -->
@@ -33,7 +33,7 @@
 
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('template.fields.name') }}</label>
-                <input type="text" name="name" class="form-control" value="{{ $user_edit->name }}" placeholder="{{ trans('template.fields.name') }}">
+                <input type="text" name="name" class="form-control" value="{{ $user->name }}" placeholder="{{ trans('template.fields.name') }}">
                 @if ($errors->has('name'))
                     <span class="help-block">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -46,7 +46,7 @@
                 <select class="form-control select2" name="type" data-placeholder="{{ trans('template.fields.type') }}" style="width: 100%;">
                     <option></option>
                     @foreach($types as $type)
-                        <option value="{{ $type->id }}" {{ ($user_edit->role->id == $type->id) ? 'selected="selected"' : '' }}>{{ $type->name }}</option>
+                        <option value="{{ $type->id }}" {{ ($user->role->id == $type->id) ? 'selected="selected"' : '' }}>{{ $type->name }}</option>
                     @endforeach
                 </select>
                 @if ($errors->has('type'))
