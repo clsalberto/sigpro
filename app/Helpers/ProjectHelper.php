@@ -152,7 +152,7 @@ if (!function_exists("format_date")) {
 }
 
 if (!function_exists("format_date_name")) {
-    function format_date_name($date, $year = false)
+    function format_date_name($date, $year = false, $template = false)
     {
 
         $mes = date("m", strtotime($date));
@@ -174,7 +174,11 @@ if (!function_exists("format_date_name")) {
         }
 
         if ($year) {
-            return "{$mes} {$ano}";
+            if ($template) {
+                return "<h5 style=\"margin:-5px\">{$mes}<br><small>{$ano}</small></h5>";
+            } else {
+                return "{$mes}{$ano}";
+            }
         }
 
         return "{$mes}";

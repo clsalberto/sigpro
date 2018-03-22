@@ -149,6 +149,7 @@ trait RegistersUsers
      */
     protected function registered(User $user, $password)
     {
-        return Mail::to($user->email)->send(new RegisteredUser($user, $password));
+        return Mail::to($user->email)
+            ->send(new RegisteredUser($user, $password));
     }
 }

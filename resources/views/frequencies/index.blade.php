@@ -25,7 +25,7 @@
 			@foreach ($dates as $date)
 				@php $active = (date("mY", strtotime($date->class_date)) == date("mY")) ? ' active' : '' @endphp
 				@if($month <> date("mY", strtotime($date->class_date)))
-					<li class="{{ $active }}"><a href="#{{ mb_strtolower(format_date_name($date->class_date)) }}" data-toggle="tab">{{ format_date_name($date->class_date) }}</a></li>
+					<li class="{{ $active }}"><a href="#{{ mb_strtolower(format_date_name($date->class_date, true)) }}" data-toggle="tab">{!! format_date_name($date->class_date, true, true) !!}</a></li>
 				@endif
 				@php $month = date("mY", strtotime($date->class_date)) @endphp
 			@endforeach
@@ -46,7 +46,7 @@
 				@php $active = (date("mY", strtotime($date->class_date)) == date("mY")) ? ' active' : '' @endphp
 
 				@if($month <> date("mY", strtotime($date->class_date)))
-					<div class="tab-pane{{ $active }}" id="{{ mb_strtolower(format_date_name($date->class_date)) }}">
+					<div class="tab-pane{{ $active }}" id="{{ mb_strtolower(format_date_name($date->class_date, true)) }}">
 						<table class="table table-hover">
 							<thead>
 								<tr>
