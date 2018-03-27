@@ -11,6 +11,7 @@ return [
         'name'                        => 'Nome',
         'surname'                     => 'Sobrenome',
         'email'                       => 'E-mail',
+        'email_confirmation'          => 'Confirmação de e-mail',
         'password'                    => 'Senha',
         'new_password'                => 'Nova senha',
         'current_password'            => 'Senha atual',
