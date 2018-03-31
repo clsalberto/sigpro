@@ -35,9 +35,10 @@
 				<thead>
 				<tr>
 					<th class="col-md-1">ID</th>
-					<th class="col-md-5">Nome</th>
+					<th class="col-md-4">Nome</th>
 					<th class="col-md-2">CPF</th>
 					<th class="col-md-4" colspan="4">Frequência</th>
+                    <th class="col-md-1"><small>Falta justificada?</small></th>
 				</tr>
 				</thead>
                 @can('view-frequencies', $registrations)
@@ -49,24 +50,29 @@
     						<td>{{ $registration->student->cpf }}</td>
     						<td class="col-md-1">
                                 @can('post-frequencies', $registrations)
-                                    <label>A <input name="presence_a" type="checkbox" value="{{ $registration->id }}" {{ $registration->frequency($class_date->id, $registration->id)->presence_a ? 'checked' : '' }}></label>
+                                    <label>A <input name="presence_a" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_a ? 'checked' : '' }}></label>
                                 @endcan
                             </td>
     						<td class="col-md-1">
                                 @can('post-frequencies', $registrations)
-                                    <label>B <input name="presence_b" type="checkbox" value="{{ $registration->id }}" {{ $registration->frequency($class_date->id, $registration->id)->presence_b ? 'checked' : '' }}></label>
+                                    <label>B <input name="presence_b" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_b ? 'checked' : '' }}></label>
                                 @endcan
                             </td>
     						<td class="col-md-1">
                                 @can('post-frequencies', $registrations)
-                                    <label>C <input name="presence_c" type="checkbox" value="{{ $registration->id }}" {{ $registration->frequency($class_date->id, $registration->id)->presence_c ? 'checked' : '' }}></label>
+                                    <label>C <input name="presence_c" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_c ? 'checked' : '' }}></label>
                                 @endcan
                             </td>
     						<td class="col-md-1">
                                 @can('post-frequencies', $registrations)
                                     @if ($room->shift == 'D')
-        							    <label>D <input name="presence_d" type="checkbox" value="{{ $registration->id }}" {{ $registration->frequency($class_date->id, $registration->id)->presence_d ? 'checked' : '' }}></label>
+        							    <label>D <input name="presence_d" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_d ? 'checked' : '' }}></label>
                                     @endif
+                                @endcan
+                            </td>
+                            <td class="col-md-1 text-center">
+                                @can('view-frequencies', $registrations)
+                                    <input name="justified" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->justified ? 'checked' : '' }}>
                                 @endcan
                             </td>
     					</tr>
@@ -88,7 +94,7 @@
                 @if ($class_date->check_frequency)
                     <a href="{{ route('frequencies.students.print', [$room->id, $class_date->id]) }}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-bar-chart text-green"></i> Comprovante</a>
                 @else
-                    <a href="{{ route('check.frequency', [$room->id, $class_date->id]) }}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-bar-chart text-green"></i> Encerar lançamento</a>
+                    <a href="{{ route('check.frequency', [$room->id, $class_date->id]) }}" id="to_close" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-bar-chart text-green"></i> Encerar lançamento</a>
                 @endif
             @endcan
 		</div>
@@ -105,6 +111,10 @@
             $(document).ready(function(){
                 $('input').iCheck({
                     checkboxClass: 'icheckbox_minimal-blue'
+                });
+
+                $('#to_close').click(function() {
+                    location.reload();
                 });
 
                 $('input[name=presence_a]').on('ifChecked', function(){
@@ -207,6 +217,32 @@
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         success: function(){
                             console.log('Frequency FALSE');
+                        }
+                    });
+                });
+
+                $('input[name=justified]').on('ifChecked', function(){
+                    var id = $(this).val();
+                    var url = '/frequency/{{ $class_date->id }}/' + id + '/justified';
+                    $.ajax({
+                        method: 'POST',
+                        url: url,
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success: function(){
+                            location.reload();
+                        }
+                    });
+                });
+
+                $('input[name=justified]').on('ifUnchecked', function(){
+                    var id = $(this).val();
+                    var url = '/frequency/{{ $class_date->id }}/' + id + '/not_justified';
+                    $.ajax({
+                        method: 'POST',
+                        url: url,
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success: function(){
+                            location.reload();
                         }
                     });
                 });

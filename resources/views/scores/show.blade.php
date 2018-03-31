@@ -3,12 +3,15 @@
 	Notas
 	<small>Relação de alunos</small>
 </h1>
-@stop @section('sidebar') @include('partials.sidebars.sidebar-home') @stop @section('content')
+@stop
 
+@section('sidebar')
 
+	@include('partials.sidebars.sidebar-home')
 
+@stop
 
-
+@section('content')
 
 <div class="box box-success">
 
@@ -38,7 +41,9 @@
 					@endif
 					<li class="list-group-item"><b>AF – Avaliação Final:</b> Atividade individual com pontuação de 0.0 a 10.0.
 						Ex.: Prova escrita com questões dissertativas e objetivas, avaliação prática (no caso das disciplinas técnicas), etc.</li>
-					<li class="list-group-item"><b>RF – Recuperação Final</b></li>
+					<li class="list-group-item"><b>RF – Recuperação Final:</b> Atividade individual valendo de 0.0 a 10.0 pontos. A recuperação final
+							deve ser realizada para todos os alunos  cujas nota de AP1+AP2+ AF/3 for menor que 6,0. A nota mínima para aprovação
+							na recuperação final é 6,0 e o resultado da recuperação final será a média final do aluno.</li>
 				</ul>
 
 			</div>

@@ -54,15 +54,15 @@ class Score extends Model
 
         if ($formula == 2) {
             if ($punct_d > 0) {
-                $average = intval(($punct_a + $punct_c) / 2);
-                return round_score(ctof(intval(($average + $punct_d) / 2)));
+                //$average = intval(($punct_a + $punct_c) / 2);
+                return round_score(ctof($punct_d));
             } else {
                 return round_score(ctof(intval(($punct_a + $punct_c) / 2)));
             }
         } elseif ($formula == 3) {
             if ($punct_d > 0) {
-                $average = intval(($punct_a + $punct_b + $punct_c) / 3);
-                return round_score(ctof(intval(($average + $punct_d) / 2)));
+                //$average = intval(($punct_a + $punct_b + $punct_c) / 3);
+                return round_score(ctof($punct_d));
             } else {
                 return round_score(ctof(intval(($punct_a + $punct_b + $punct_c) / 3)));
             }

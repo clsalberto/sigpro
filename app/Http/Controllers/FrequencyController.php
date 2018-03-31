@@ -122,7 +122,10 @@ class FrequencyController extends Controller
 
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
-            ->update(['presence_a' => true]);
+            ->update([
+                'justified' => false,
+                'presence_a' => true
+            ]);
     }
 
     /**
@@ -173,7 +176,10 @@ class FrequencyController extends Controller
 
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
-            ->update(['presence_b' => true]);
+            ->update([
+                'justified' => false,
+                'presence_b' => true
+            ]);
     }
 
     /**
@@ -224,7 +230,10 @@ class FrequencyController extends Controller
 
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
-            ->update(['presence_c' => true]);
+            ->update([
+                'justified' => false,
+                'presence_c' => true
+            ]);
     }
 
     /**
@@ -275,7 +284,10 @@ class FrequencyController extends Controller
 
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
-            ->update(['presence_d' => true]);
+            ->update([
+                'justified' => false,
+                'presence_d' => true
+            ]);
     }
 
     /**
@@ -300,5 +312,54 @@ class FrequencyController extends Controller
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
             ->update(['presence_d' => false]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param int $class_date_id
+     * @param int $registration_id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function justified($class_date_id, $registration_id)
+    {
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update([
+                'presence_a' => false,
+                'presence_b' => false,
+                'presence_c' => false,
+                'presence_d' => false,
+                'justified' => true
+            ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function not_justified($class_date_id, $registration_id)
+    {
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update(['justified' => false]);
     }
 }
