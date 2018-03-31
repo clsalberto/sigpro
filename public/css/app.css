@@ -3,7 +3,7 @@
 }
 
 .content-wrapper {
-	background: url('../images/fundo_sistema.png') center center repeat fixed;
+	background: url('../images/background.png') center center repeat fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;

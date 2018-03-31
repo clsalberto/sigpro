@@ -28,7 +28,7 @@
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                     <input type="email" name="email" class="form-control" value="{{ $email or old('email') }}" placeholder="{{ trans('template.fields.email') }}">
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <span class="fa fa-user form-control-feedback"></span>
                     @if ($errors->has('email'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
