@@ -10,10 +10,10 @@ return [
     'logo' => '<i class="fa fa-dot-circle-o"></i> SIG<b>Pronatec</b>',
     'logo_mini' => '<i class="fa fa-dot-circle-o"></i>',
     'institution' => [
-	    'name' => 'PRONATEC - UECE',
-	    'address' => 'Rua Teste, 345',
-	    'cnpj' => '00.000.000/0000-22',
+	    'name' => 'UECE - Pronatec',
+	    'address' => 'Av. Dr. Silas Munguba, 1700 - Campus do Itaperi',
+	    'cnpj' => '07.885.809/0001-97',
         'media' => '6.0',
     ],
-    'version' => '1.2.36',
+    'version' => '1.2.38',
 ];
