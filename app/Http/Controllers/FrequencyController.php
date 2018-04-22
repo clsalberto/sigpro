@@ -332,6 +332,9 @@ class FrequencyController extends Controller
 
         $class_date->update(['active' => true]);
 
+        $registration = Registration::find($registration_id);
+        $registration->update(['workload' => 0]);
+
         return Frequency::where('class_date_id', $class_date_id)
             ->where('registration_id', $registration_id)
             ->update([

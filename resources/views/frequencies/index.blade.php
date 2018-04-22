@@ -31,9 +31,14 @@
 			@endforeach
 
 			<li class="pull-left box-header">
-				<h3 class="box-title">{{ $room->course->name }}
-					<br><small>{{ $room->module->description }}</small>
-				</h3>
+				<h3 class="box-title">{{ $room->course->name }}</h3>
+                <div class="clearfix">
+                    <span class="pull-left">{{ $room->module->description }}</span>
+                    <small class="pull-right">19%</small>
+                </div>
+                <div class="progress sm active">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" style="width: 19%;"></div>
+                </div>
 			</li>
 		</ul>
 		<div class="tab-content">
@@ -51,7 +56,8 @@
 							<thead>
 								<tr>
 									<th class="col-md-1">ID</th>
-									<th class="col-md-8">Data</th>
+									<th class="col-md-7">Data</th>
+									<th class="col-md-1">Horas</th>
 									<th class="col-md-3"></th>
 								</tr>
 							</thead>
@@ -61,6 +67,7 @@
 								<tr>
 									<td>{{ $date->id }}</td>
 									<td>{!! format_date($date->class_date) !!}</td>
+									<td>{{ $date->workload }}</td>
 									<td>
 										@can('view-frequencies', $date)
 											<div class="btn-group">

@@ -35,10 +35,10 @@
 				<thead>
 				<tr>
 					<th class="col-md-1">ID</th>
-					<th class="col-md-4">Nome</th>
-					<th class="col-md-2">CPF</th>
-					<th class="col-md-4" colspan="4">Frequência</th>
-                    <th class="col-md-1"><small>Falta justificada?</small></th>
+                    <th class="col-md-5">Nome</th>
+                    <th class="col-md-4" colspan="4">Frequência</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-1"></th>
 				</tr>
 				</thead>
                 @can('view-frequencies', $registrations)
@@ -46,8 +46,8 @@
     				@foreach ($registrations as $registration)
     					<tr>
     						<td>{{ $registration->student->id }}</td>
-    						<td>{{ $registration->student->full_name }}</td>
-    						<td>{{ $registration->student->cpf }}</td>
+
+                            <td>{{ $registration->student->full_name }}</td>
     						<td class="col-md-1">
                                 @can('post-frequencies', $registrations)
                                     <label>A <input name="presence_a" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_a ? 'checked' : '' }}></label>
@@ -70,17 +70,20 @@
                                     @endif
                                 @endcan
                             </td>
-                            <td class="col-md-1 text-center">
-                                @can('view-frequencies', $registrations)
-                                    <input name="justified" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->justified ? 'checked' : '' }}>
-                                @endcan
+                            <td>
+                                <span class="sparkpie">{{ $registration->workload }},{{ $class_date->workload - $registration->workload }}</span>
+                            </td>
+                            <td class="text-center">
+                                <a href="" class="btn btn-default btn-xs">
+                                    <i class="fa fa-pencil-square-o text-green"></i> Justificar
+                                </a>
                             </td>
     					</tr>
     				@endforeach
     				</tbody>
     				<tfoot>
                         <tr>
-                            <th colspan="4">{{ 'Registros: ' . count($registrations) }}</th>
+                            <th colspan="8">{{ 'Total de alunos: ' . count($registrations) }}</th>
                         </tr>
                     </tfoot>
                 @endcan
@@ -107,11 +110,14 @@
 @section('scripts')
     @can('view-frequencies', $registrations)
     	<script src="{{ asset('plugins/iCheck/icheck.js') }}"></script>
+        <script src="{{ asset('plugins/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
     	<script>
             $(document).ready(function(){
                 $('input').iCheck({
                     checkboxClass: 'icheckbox_minimal-blue'
                 });
+
+                $('.sparkpie').sparkline('html', {type: 'pie', height: '1.3em', sliceColors: ['#00a65a','#dd4b39','#f39c12','#3c8dbc','#66aa00','#dd4477','#0099c6','#605ca8']});
 
                 $('#to_close').click(function() {
                     location.reload();

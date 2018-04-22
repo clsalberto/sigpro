@@ -58,8 +58,9 @@
 	            <thead>
 	                <tr>
 						<th class="col-md-1">ID</th>
-						<th class="col-md-5">Nome</th>
+						<th class="col-md-4">Nome</th>
 						<th class="col-md-2">CPF</th>
+						<th class="col-md-1"></th>
 						<th class="col-md-4" colspan="4">Frequência</th>
 	                </tr>
 	            </thead>
@@ -69,6 +70,9 @@
 	                    <td>{{ $registration->student->id }}</td>
 	                    <td>{{ $registration->student->full_name }}</td>
 	                    <td>{{ $registration->student->cpf }}</td>
+						<td>
+							<span class="sparkpie">{{ $registration->workload }},{{ $class_date->workload - $registration->workload }}</span>
+						</td>
 	                    <td class="col-md-1">
 							<b>A</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_a ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
 						</td>
@@ -88,7 +92,7 @@
 	            </tbody>
 							<tfoot>
                     <tr>
-                        <th colspan="4">{{ 'Registros: ' . count($registrations) }}</th>
+                        <th colspan="4">{{ 'Total de alunos: ' . count($registrations) }}</th>
                     </tr>
                 </tfoot>
 	          </table>
@@ -129,5 +133,15 @@
 
 	    </section>
 
-
 @endsection
+
+@section('scripts')
+	@can('view-frequencies', $registrations)
+		<script src="{{ asset('plugins/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
+		<script>
+            $(document).ready(function(){
+                $('.sparkpie').sparkline('html', {type: 'pie', height: '1.3em', sliceColors: ['#00a65a','#dd4b39','#f39c12','#3c8dbc','#66aa00','#dd4477','#0099c6','#605ca8']});
+            });
+		</script>
+	@endcan
+@stop

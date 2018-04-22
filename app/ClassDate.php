@@ -22,7 +22,7 @@ class ClassDate extends Model
      * @var array
      */
     protected $fillable = [
-        'room_id', 'class_date', 'avaliation', 'active', 'check_frequency',
+        'room_id', 'class_date', 'avaliation', 'active', 'check_frequency', 'workload',
     ];
 
     /**
@@ -31,6 +31,21 @@ class ClassDate extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeClassHoursMonth($query, $room_id, $month, $year)
+    {
+        return $query
+            ->where('room_id', $room_id)
+            ->whereMonth('class_date', $month)
+            ->whereYear('class_date', $year)
+            ->sum('workload');
+    }
 
     /**
      * Relationship with room.
