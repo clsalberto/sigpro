@@ -19,7 +19,7 @@ class Frequency extends Model
      * @var array
      */
     protected $fillable = [
-        'class_date_id', 'registration_id', 'presence_a', 'presence_b', 'presence_c', 'presence_d',
+        'class_date_id', 'registration_id', 'presence_a', 'presence_b', 'presence_c', 'presence_d', 'presence_e', 'presence_f',
     ];
 
     /**

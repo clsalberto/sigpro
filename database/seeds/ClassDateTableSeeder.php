@@ -26,6 +26,7 @@ class ClassDateTableSeeder extends Seeder
         		$room->classDates()->create([
         			'room_id' => $room->id,
         			'class_date' => $idate->format('Y-m-d'),
+                    'workload' => rand(1, 6),
         			'avaliation' => fmod($inc, 5) == 0 ? true : false
         		]);
                 $idate = $idate->modify('+1day');

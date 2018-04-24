@@ -89,6 +89,12 @@ Route::post('/frequency/{class_date_id}/{registration_id}/inactive_c', 'Frequenc
 Route::post('/frequency/{class_date_id}/{registration_id}/active_d', 'FrequencyController@active_d')->middleware('can:post-frequencies,App\Frequency');
 Route::post('/frequency/{class_date_id}/{registration_id}/inactive_d', 'FrequencyController@inactive_d')->middleware('can:post-frequencies,App\Frequency');
 
+Route::post('/frequency/{class_date_id}/{registration_id}/active_e', 'FrequencyController@active_e')->middleware('can:post-frequencies,App\Frequency');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_e', 'FrequencyController@inactive_e')->middleware('can:post-frequencies,App\Frequency');
+
+Route::post('/frequency/{class_date_id}/{registration_id}/active_f', 'FrequencyController@active_f')->middleware('can:post-frequencies,App\Frequency');
+Route::post('/frequency/{class_date_id}/{registration_id}/inactive_f', 'FrequencyController@inactive_f')->middleware('can:post-frequencies,App\Frequency');
+
 Route::post('/frequency/{class_date_id}/{registration_id}/justified', 'FrequencyController@justified')->middleware('can:post-frequencies,App\Frequency');
 Route::post('/frequency/{class_date_id}/{registration_id}/not_justified', 'FrequencyController@not_justified')->middleware('can:post-frequencies,App\Frequency');
 

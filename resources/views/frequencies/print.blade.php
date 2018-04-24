@@ -59,9 +59,8 @@
 	                <tr>
 						<th class="col-md-1">ID</th>
 						<th class="col-md-4">Nome</th>
-						<th class="col-md-2">CPF</th>
-						<th class="col-md-1"></th>
-						<th class="col-md-4" colspan="4">Frequência</th>
+						<th class="col-md-1">CPF</th>
+						<th class="col-md-6" colspan="6">Frequência</th>
 	                </tr>
 	            </thead>
 	            <tbody>
@@ -70,21 +69,34 @@
 	                    <td>{{ $registration->student->id }}</td>
 	                    <td>{{ $registration->student->full_name }}</td>
 	                    <td>{{ $registration->student->cpf }}</td>
-						<td>
-							<span class="sparkpie">{{ $registration->workload }},{{ $class_date->workload - $registration->workload }}</span>
-						</td>
 	                    <td class="col-md-1">
-							<b>A</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_a ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+	                    	@if(in_array($class_date->workload, [1, 2, 3, 4, 5, 6]))
+								<b>A</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_a ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+							@endif
 						</td>
                         <td class="col-md-1">
-							<b>B</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_b ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+                        	@if(in_array($class_date->workload, [2, 3, 4, 5, 6]))
+								<b>B</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_b ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+							@endif
 						</td>
                         <td class="col-md-1">
-							<b>C</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_c ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+                        	@if(in_array($class_date->workload, [3, 4, 5, 6]))
+								<b>C</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_c ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+							@endif
 						</td>
                         <td class="col-md-1">
-							@if ($room->shift == 'D')
+                        	@if(in_array($class_date->workload, [4, 5, 6]))
 								<b>D</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_d ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+							@endif
+						</td>
+						<td class="col-md-1">
+                        	@if(in_array($class_date->workload, [5, 6]))
+								<b>E</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_e ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
+							@endif
+						</td>
+						<td class="col-md-1">
+                        	@if(in_array($class_date->workload, [5, 6]))
+								<b>F</b> {!! $registration->frequency($class_date->id, $registration->id)->presence_f ? "<b class='label label-success'>P</b>" : "<b class='label label-danger'>F</b>" !!}
 							@endif
 						</td>
 	                </tr>

@@ -322,6 +322,114 @@ class FrequencyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function active_e($class_date_id, $registration_id)
+    {
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload + 1;
+        $registration->update(['workload' => $workload]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update([
+                'justified' => false,
+                'presence_e' => true
+            ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inactive_e($class_date_id, $registration_id)
+    {
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload - 1;
+        $registration->update(['workload' => $workload]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update(['presence_e' => false]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param int $class_date_id
+     * @param int $registration_id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function active_f($class_date_id, $registration_id)
+    {
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload + 1;
+        $registration->update(['workload' => $workload]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update([
+                'justified' => false,
+                'presence_f' => true
+            ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inactive_f($class_date_id, $registration_id)
+    {
+        $class_date = ClassDate::find($class_date_id);
+
+        if ($class_date->check_frequency) {
+            return false;
+        }
+
+        $class_date->update(['active' => true]);
+
+        $registration = Registration::find($registration_id);
+        $workload = $registration->workload - 1;
+        $registration->update(['workload' => $workload]);
+
+        return Frequency::where('class_date_id', $class_date_id)
+            ->where('registration_id', $registration_id)
+            ->update(['presence_f' => false]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param int $class_date_id
+     * @param int $registration_id
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function justified($class_date_id, $registration_id)
     {
         $class_date = ClassDate::find($class_date_id);

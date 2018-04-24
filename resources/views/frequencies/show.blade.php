@@ -35,8 +35,8 @@
 				<thead>
 				<tr>
 					<th class="col-md-1">ID</th>
-                    <th class="col-md-6">Nome</th>
-                    <th class="col-md-4" colspan="4">Frequência</th>
+                    <th class="col-md-4">Nome</th>
+                    <th class="col-md-6" colspan="6">Frequência</th>
                     <th class="col-md-1"></th>
 				</tr>
 				</thead>
@@ -48,26 +48,46 @@
 
                             <td>{{ $registration->student->full_name }}</td>
     						<td class="col-md-1">
-                                @can('post-frequencies', $registrations)
-                                    <label>A <input name="presence_a" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_a ? 'checked' : '' }}></label>
-                                @endcan
+                                @if(in_array($class_date->workload, [1, 2, 3, 4, 5, 6]))
+                                    @can('post-frequencies', $registrations)
+                                        <label>A <input name="presence_a" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_a ? 'checked' : '' }}></label>
+                                    @endcan
+                                @endif
                             </td>
     						<td class="col-md-1">
-                                @can('post-frequencies', $registrations)
-                                    <label>B <input name="presence_b" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_b ? 'checked' : '' }}></label>
-                                @endcan
+                                @if(in_array($class_date->workload, [2, 3, 4, 5, 6]))
+                                    @can('post-frequencies', $registrations)
+                                        <label>B <input name="presence_b" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_b ? 'checked' : '' }}></label>
+                                    @endcan
+                                @endif
                             </td>
     						<td class="col-md-1">
-                                @can('post-frequencies', $registrations)
-                                    <label>C <input name="presence_c" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_c ? 'checked' : '' }}></label>
-                                @endcan
+                                @if(in_array($class_date->workload, [3, 4, 5, 6]))
+                                    @can('post-frequencies', $registrations)
+                                        <label>C <input name="presence_c" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_c ? 'checked' : '' }}></label>
+                                    @endcan
+                                @endif
                             </td>
     						<td class="col-md-1">
-                                @can('post-frequencies', $registrations)
-                                    @if ($room->shift == 'D')
-        							    <label>D <input name="presence_d" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_d ? 'checked' : '' }}></label>
-                                    @endif
-                                @endcan
+                                @if(in_array($class_date->workload, [4, 5, 6]))
+                                    @can('post-frequencies', $registrations)
+            							<label>D <input name="presence_d" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_d ? 'checked' : '' }}></label>
+                                    @endcan
+                                @endif
+                            </td>
+                            <td class="col-md-1">
+                                @if(in_array($class_date->workload, [5, 6]))
+                                    @can('post-frequencies', $registrations)
+                                        <label>E <input name="presence_e" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_e ? 'checked' : '' }}></label>
+                                    @endcan
+                                @endif
+                            </td>
+                            <td class="col-md-1">
+                                @if(in_array($class_date->workload, [6]))
+                                    @can('post-frequencies', $registrations)
+                                        <label>F <input name="presence_f" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_f ? 'checked' : '' }}></label>
+                                    @endcan
+                                @endif
                             </td>
                             <td class="text-center">
                                 @if ($class_date->check_frequency)
@@ -229,28 +249,54 @@
                     });
                 });
 
-                $('input[name=justified]').on('ifChecked', function(){
+                $('input[name=presence_e]').on('ifChecked', function(){
                     var id = $(this).val();
-                    var url = '/frequency/{{ $class_date->id }}/' + id + '/justified';
+                    var url = '/frequency/{{ $class_date->id }}/' + id + '/active_e';
                     $.ajax({
                         method: 'POST',
                         url: url,
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         success: function(){
-                            location.reload();
+                            console.log('Frequency TRUE');
                         }
                     });
                 });
 
-                $('input[name=justified]').on('ifUnchecked', function(){
+                $('input[name=presence_e]').on('ifUnchecked', function(){
                     var id = $(this).val();
-                    var url = '/frequency/{{ $class_date->id }}/' + id + '/not_justified';
+                    var url = '/frequency/{{ $class_date->id }}/' + id + '/inactive_e';
                     $.ajax({
                         method: 'POST',
                         url: url,
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         success: function(){
-                            location.reload();
+                            console.log('Frequency FALSE');
+                        }
+                    });
+                });
+
+                $('input[name=presence_f]').on('ifChecked', function(){
+                    var id = $(this).val();
+                    var url = '/frequency/{{ $class_date->id }}/' + id + '/active_f';
+                    $.ajax({
+                        method: 'POST',
+                        url: url,
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success: function(){
+                            console.log('Frequency TRUE');
+                        }
+                    });
+                });
+
+                $('input[name=presence_f]').on('ifUnchecked', function(){
+                    var id = $(this).val();
+                    var url = '/frequency/{{ $class_date->id }}/' + id + '/inactive_f';
+                    $.ajax({
+                        method: 'POST',
+                        url: url,
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success: function(){
+                            console.log('Frequency FALSE');
                         }
                     });
                 });

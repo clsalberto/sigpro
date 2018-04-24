@@ -4,10 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property mixed shift
- * @property mixed formula
- */
 class Room extends Model
 {
     /**
