@@ -35,9 +35,8 @@
 				<thead>
 				<tr>
 					<th class="col-md-1">ID</th>
-                    <th class="col-md-5">Nome</th>
+                    <th class="col-md-6">Nome</th>
                     <th class="col-md-4" colspan="4">Frequência</th>
-                    <th class="col-md-1"></th>
                     <th class="col-md-1"></th>
 				</tr>
 				</thead>
@@ -70,13 +69,16 @@
                                     @endif
                                 @endcan
                             </td>
-                            <td>
-                                <span class="sparkpie">{{ $registration->workload }},{{ $class_date->workload - $registration->workload }}</span>
-                            </td>
                             <td class="text-center">
-                                <a href="" class="btn btn-default btn-xs">
-                                    <i class="fa fa-pencil-square-o text-green"></i> Justificar
-                                </a>
+                                @if ($class_date->check_frequency)
+                                    <button class="btn btn-default btn-xs" disabled>
+                                        <i class="fa fa-pencil-square-o text-green"></i> Justificar
+                                    </button>
+                                @else
+                                    <a href="" class="btn btn-default btn-xs">
+                                        <i class="fa fa-pencil-square-o text-green"></i> Justificar
+                                    </a>
+                                @endif
                             </td>
     					</tr>
     				@endforeach

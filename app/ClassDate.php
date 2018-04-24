@@ -33,21 +33,6 @@ class ClassDate extends Model
     public $timestamps = false;
 
     /**
-     * Scope a query to only include popular users.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeClassHoursMonth($query, $room_id, $month, $year)
-    {
-        return $query
-            ->where('room_id', $room_id)
-            ->whereMonth('class_date', $month)
-            ->whereYear('class_date', $year)
-            ->sum('workload');
-    }
-
-    /**
      * Relationship with room.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -97,5 +82,21 @@ class ClassDate extends Model
         $content = collect($this->programContent);
 
         return $content->count() > 0 ? true : false;
+    }
+
+    public function scopeHoursMonth($query, $room_id, $month, $year)
+    {
+        return $query->select('workload')
+            ->where('room_id', $room_id)
+            ->whereMonth('class_date', $month)
+            ->whereYear('class_date', $year)
+            ->sum('workload');
+    }
+
+    public function scopeTotalHours($query, $room_id)
+    {
+        return $query->select('workload')
+            ->where('room_id', $room_id)
+            ->sum('workload');
     }
 }

@@ -33,16 +33,17 @@
 			<li class="pull-left box-header">
 				<h3 class="box-title">{{ $room->course->name }}</h3>
                 <div class="clearfix">
-                    <span class="pull-left">{{ $room->module->description }}</span>
-                    <small class="pull-right">19%</small>
+                    <span>{{ $room->module->description }}</span>
                 </div>
-                <div class="progress sm active">
-                    <div class="progress-bar progress-bar-success progress-bar-striped" style="width: 19%;"></div>
+                <div class="progress sm active" style="margin-bottom: 0px;">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" style="width: {{ $room->percent($room->totalActived(), count($dates)) . '%' }};"></div>
+                </div>
+                <div class="clearfix">
+                	<small class="pull-right">{{ $room->percent($room->totalActived(), count($dates)) . '%' }}</small>
                 </div>
 			</li>
 		</ul>
 		<div class="tab-content">
-
 
 			@php $month = '' @endphp
 			@php $inc = 1 @endphp
@@ -52,6 +53,13 @@
 
 				@if($month <> date("mY", strtotime($date->class_date)))
 					<div class="tab-pane{{ $active }}" id="{{ mb_strtolower(format_date_name($date->class_date, true)) }}">
+
+						<div class="clearfix">
+			                <small class="pull-right">
+			                	{!! '(<b>' . 	$date->hoursMonth($room->id, date("m", strtotime($date->class_date)), date("Y", strtotime($date->class_date))) . '</b> de <b>' . $date->totalHours($room->id) . '</b> Horas)' !!}
+			                </small>
+			            </div>
+
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -77,8 +85,15 @@
 												<a href="{{ route('frequencies.students', [$room->id, $date->id]) }}" class="btn btn-default btn-xs">
 													<i class="fa fa-check text-green"></i> Lançar Frequência </a>
 												@else
-												<a href="{{ route('content', [$room->id, $date->id]) }}" class="btn btn-default btn-xs">
-													<i class="fa fa-cog text-green"></i> Conteúdos </a>
+													@if($date->class_date > date('Y-m-d'))
+														<button class="btn btn-default btn-xs" disabled>
+															<i class="fa fa-cog text-green"></i> Conteúdos
+														</button>
+													@else
+														<a href="{{ route('content', [$room->id, $date->id]) }}" class="btn btn-default btn-xs">
+															<i class="fa fa-cog text-green"></i> Conteúdos
+														</a>
+													@endif
 												@endif
 											</div>
 										@endcan

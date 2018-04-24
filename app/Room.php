@@ -133,4 +133,17 @@ class Room extends Model
         }
         return true;
     }
+
+    public function totalActived()
+    {
+        return $this->classDates()
+            ->select('active')
+            ->where('active', true)
+            ->count();
+    }
+
+    public function percent($value, $total)
+    {
+        return ctoi(($value * 10) / $total);
+    }
 }

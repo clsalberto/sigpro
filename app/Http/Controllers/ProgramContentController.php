@@ -48,7 +48,7 @@ class ProgramContentController extends Controller
         $this->validator($data)->validate();
         $this->create($data);
 
-        return redirect()->route('frequencies', $data['room_id'])
+        return redirect()->route('frequencies.students', [$data['room_id'], $data['class_date_id']])
             ->with('success', 'Frequência liberada com sucesso!');
     }
 
