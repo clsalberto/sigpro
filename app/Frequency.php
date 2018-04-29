@@ -41,4 +41,26 @@ class Frequency extends Model
     {
         return $this->belongsTo(Registration::class);
     }
+
+    /**
+     * Relationship with justification.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function justification()
+    {
+        return $this->hasOne(Justification::class);
+    }
+
+    /**
+     * Get the class date has content.
+     *
+     * @return bool
+     */
+    public function getHasJustificationAttribute()
+    {
+        $justify = collect($this->justification);
+
+        return $justify->count() > 0 ? true : false;
+    }
 }

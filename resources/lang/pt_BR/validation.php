@@ -131,6 +131,8 @@ return [
         'address'                     => 'endereço',
         'cpf'                         => 'CPF',
         'content'                     => 'conteúdo programático',
+        'comments'                    => 'justificativa',
+        'document'                    => 'documento',
         'formula_id'                  => 'fórmula',
     ],
 

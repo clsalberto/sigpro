@@ -113,6 +113,13 @@ Route::post('/room/{room_id}/{class_date_id}/content', 'ProgramContentController
 Route::get('/room/{room_id}/{class_date_id}/content/show', 'ProgramContentController@show')->name('content.show');
 
 /*
+ * Routes justifications.
+ */
+Route::get('/student/{id}/justify', 'JustificationController@index')->name('justify');
+Route::post('/student/{id}/justify', 'JustificationController@register')->name('justify.register');
+Route::get('/student/{id}/justify/show', 'JustificationController@show')->name('justify.show');
+
+/*
  * Routes has formula.
  */
 Route::get('/room/{id}/formula', 'FormulaController@index')->name('formula');

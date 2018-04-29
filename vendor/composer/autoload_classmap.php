@@ -41,6 +41,7 @@ return array(
     'App\\Http\\Traits\\RegistersProfiles' => $baseDir . '/app/Http/Traits/RegistersProfiles.php',
     'App\\Http\\Traits\\RegistersRoles' => $baseDir . '/app/Http/Traits/RegistersRoles.php',
     'App\\Http\\Traits\\RegistersUsers' => $baseDir . '/app/Http/Traits/RegistersUsers.php',
+    'App\\Justification' => $baseDir . '/app/Justification.php',
     'App\\Listeners\\UserLoggedNotification' => $baseDir . '/app/Listeners/UserLoggedNotification.php',
     'App\\Listeners\\UserUnloggedNotification' => $baseDir . '/app/Listeners/UserUnloggedNotification.php',
     'App\\Logged' => $baseDir . '/app/Logged.php',

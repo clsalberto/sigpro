@@ -19,7 +19,7 @@ class ComposerStaticInit1e017d341815a0c144efdb5d8667d0ad
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        'ad47e47ea577302c0ff6daee6d2753ef' => __DIR__ . '/../..' . '/app/Helpers/ProjectHelper.php',
+        'd80cb9889618ffc13ffeba96dafb843d' => __DIR__ . '/../..' . '/app/Helpers/ProjectHelper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -406,6 +406,7 @@ class ComposerStaticInit1e017d341815a0c144efdb5d8667d0ad
         'App\\Http\\Traits\\RegistersProfiles' => __DIR__ . '/../..' . '/app/Http/Traits/RegistersProfiles.php',
         'App\\Http\\Traits\\RegistersRoles' => __DIR__ . '/../..' . '/app/Http/Traits/RegistersRoles.php',
         'App\\Http\\Traits\\RegistersUsers' => __DIR__ . '/../..' . '/app/Http/Traits/RegistersUsers.php',
+        'App\\Justification' => __DIR__ . '/../..' . '/app/Justification.php',
         'App\\Listeners\\UserLoggedNotification' => __DIR__ . '/../..' . '/app/Listeners/UserLoggedNotification.php',
         'App\\Listeners\\UserUnloggedNotification' => __DIR__ . '/../..' . '/app/Listeners/UserUnloggedNotification.php',
         'App\\Logged' => __DIR__ . '/../..' . '/app/Logged.php',

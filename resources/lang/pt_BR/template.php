@@ -25,6 +25,8 @@ return [
         'address'                     => 'Endereço',
         'cpf'                         => 'CPF',
         'content'                     => 'Conteúdo Programático',
+        'comments'                    => 'Justificativa',
+        'document'                    => 'Documento',
         'formula'                     => 'Fórmula',
         'permissions'                 => 'Permições',
     ],

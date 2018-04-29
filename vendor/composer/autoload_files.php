@@ -18,5 +18,5 @@ return array(
     '37a3dc5111fe8f707ab4c132ef1dbc62' => $vendorDir . '/guzzlehttp/guzzle/src/functions_include.php',
     'f0906e6318348a765ffb6eb24e0d0938' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     '58571171fd5812e6e447dce228f52f4d' => $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
-    'ad47e47ea577302c0ff6daee6d2753ef' => $baseDir . '/app/Helpers/ProjectHelper.php',
+    'd80cb9889618ffc13ffeba96dafb843d' => $baseDir . '/app/Helpers/ProjectHelper.php',
 );

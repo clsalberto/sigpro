@@ -50,54 +50,60 @@
     						<td class="col-md-1">
                                 @if(in_array($class_date->workload, [1, 2, 3, 4, 5, 6]))
                                     @can('post-frequencies', $registrations)
-                                        <label>A <input name="presence_a" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_a ? 'checked' : '' }}></label>
+                                        <label>A <input name="presence_a" type="checkbox" value="{{ $registration->id }}" {{ ($class_date->check_frequency || $registration->frequency($class_date->id, $registration->id)->has_justification) ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_a ? 'checked' : '' }}></label>
                                     @endcan
                                 @endif
                             </td>
     						<td class="col-md-1">
                                 @if(in_array($class_date->workload, [2, 3, 4, 5, 6]))
                                     @can('post-frequencies', $registrations)
-                                        <label>B <input name="presence_b" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_b ? 'checked' : '' }}></label>
+                                        <label>B <input name="presence_b" type="checkbox" value="{{ $registration->id }}" {{ ($class_date->check_frequency || $registration->frequency($class_date->id, $registration->id)->has_justification) ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_b ? 'checked' : '' }}></label>
                                     @endcan
                                 @endif
                             </td>
     						<td class="col-md-1">
                                 @if(in_array($class_date->workload, [3, 4, 5, 6]))
                                     @can('post-frequencies', $registrations)
-                                        <label>C <input name="presence_c" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_c ? 'checked' : '' }}></label>
+                                        <label>C <input name="presence_c" type="checkbox" value="{{ $registration->id }}" {{ ($class_date->check_frequency || $registration->frequency($class_date->id, $registration->id)->has_justification) ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_c ? 'checked' : '' }}></label>
                                     @endcan
                                 @endif
                             </td>
     						<td class="col-md-1">
                                 @if(in_array($class_date->workload, [4, 5, 6]))
                                     @can('post-frequencies', $registrations)
-            							<label>D <input name="presence_d" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_d ? 'checked' : '' }}></label>
+            							<label>D <input name="presence_d" type="checkbox" value="{{ $registration->id }}" {{ ($class_date->check_frequency || $registration->frequency($class_date->id, $registration->id)->has_justification) ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_d ? 'checked' : '' }}></label>
                                     @endcan
                                 @endif
                             </td>
                             <td class="col-md-1">
                                 @if(in_array($class_date->workload, [5, 6]))
                                     @can('post-frequencies', $registrations)
-                                        <label>E <input name="presence_e" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_e ? 'checked' : '' }}></label>
+                                        <label>E <input name="presence_e" type="checkbox" value="{{ $registration->id }}" {{ ($class_date->check_frequency || $registration->frequency($class_date->id, $registration->id)->has_justification) ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_e ? 'checked' : '' }}></label>
                                     @endcan
                                 @endif
                             </td>
                             <td class="col-md-1">
                                 @if(in_array($class_date->workload, [6]))
                                     @can('post-frequencies', $registrations)
-                                        <label>F <input name="presence_f" type="checkbox" value="{{ $registration->id }}" {{ $class_date->check_frequency ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_f ? 'checked' : '' }}></label>
+                                        <label>F <input name="presence_f" type="checkbox" value="{{ $registration->id }}" {{ ($class_date->check_frequency || $registration->frequency($class_date->id, $registration->id)->has_justification) ? 'disabled' : '' }} {{ $registration->frequency($class_date->id, $registration->id)->presence_f ? 'checked' : '' }}></label>
                                     @endcan
                                 @endif
                             </td>
                             <td class="text-center">
                                 @if ($class_date->check_frequency)
                                     <button class="btn btn-default btn-xs" disabled>
-                                        <i class="fa fa-pencil-square-o text-green"></i> Justificar
+                                        <i class="fa fa-pencil-square-o text-green"></i> {{ $registration->frequency($class_date->id, $registration->id)->has_justification ? 'Justificado' : 'Justificar' }}
                                     </button>
                                 @else
-                                    <a href="" class="btn btn-default btn-xs">
-                                        <i class="fa fa-pencil-square-o text-green"></i> Justificar
-                                    </a>
+                                    @if ($registration->frequency($class_date->id, $registration->id)->has_justification)
+                                        <a href="{{ route('justify.show', $registration->frequency($class_date->id, $registration->id)->id) }}" class="btn btn-default btn-xs">
+                                            <i class="fa fa-pencil-square-o text-green"></i> Justificado
+                                        </a>
+                                    @else
+                                        <a href="{{ route('justify', $registration->frequency($class_date->id, $registration->id)->id) }}" class="btn btn-default btn-xs">
+                                            <i class="fa fa-pencil-square-o text-green"></i> Justificar
+                                        </a>
+                                    @endif
                                 @endif
                             </td>
     					</tr>

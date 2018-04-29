@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "education-manager/sigpro",
+    "description": "Web education manager for pronatec.",
+    "keywords": ["framework", "laravel", "sigpro"],
     "license": "MIT",
     "type": "project",
     "require": {
