@@ -392,6 +392,7 @@ class ComposerStaticInit1e017d341815a0c144efdb5d8667d0ad
         'App\\Http\\Controllers\\FormulaController' => __DIR__ . '/../..' . '/app/Http/Controllers/FormulaController.php',
         'App\\Http\\Controllers\\FrequencyController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrequencyController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\JustificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/JustificationController.php',
         'App\\Http\\Controllers\\ProgramContentController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProgramContentController.php',
         'App\\Http\\Controllers\\RoomController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoomController.php',
         'App\\Http\\Controllers\\ScoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/ScoreController.php',

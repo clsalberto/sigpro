@@ -27,6 +27,7 @@ return array(
     'App\\Http\\Controllers\\FormulaController' => $baseDir . '/app/Http/Controllers/FormulaController.php',
     'App\\Http\\Controllers\\FrequencyController' => $baseDir . '/app/Http/Controllers/FrequencyController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\JustificationController' => $baseDir . '/app/Http/Controllers/JustificationController.php',
     'App\\Http\\Controllers\\ProgramContentController' => $baseDir . '/app/Http/Controllers/ProgramContentController.php',
     'App\\Http\\Controllers\\RoomController' => $baseDir . '/app/Http/Controllers/RoomController.php',
     'App\\Http\\Controllers\\ScoreController' => $baseDir . '/app/Http/Controllers/ScoreController.php',

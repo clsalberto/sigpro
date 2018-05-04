@@ -34,7 +34,7 @@
 			<table class="table table-hover">
 				<thead>
 				<tr>
-					<th class="col-md-1">ID</th>
+                    <th class="col-md-1">ID</th>
                     <th class="col-md-4">Nome</th>
                     <th class="col-md-6" colspan="6">Frequência</th>
                     <th class="col-md-1"></th>
@@ -44,7 +44,7 @@
     				<tbody>
     				@foreach ($registrations as $registration)
     					<tr>
-    						<td>{{ $registration->student->id }}</td>
+                            <td>{{ $registration->student->id }}</td>
 
                             <td>{{ $registration->student->full_name }}</td>
     						<td class="col-md-1">

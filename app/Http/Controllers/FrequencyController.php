@@ -43,7 +43,7 @@ class FrequencyController extends Controller
     public function show($room_id, $class_date_id)
     {
         $room = Room::find($room_id);
-        $registrations = collect($room->registrations()->with('student')->get())->sortBy('student.name');
+        $registrations = collect($room->registrations()->where('status', 'A')->with('student')->get())->sortBy('student.name');
         $registrations->values()->all();
         $class_date = $room->classDates()->find($class_date_id);
 
